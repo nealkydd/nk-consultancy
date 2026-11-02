@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NK Consultancy - product, brand and digital experiences.">
+  <title>NK Consultancy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#0a0a0b; --panel:#121214; --gold:#d3b16c; --gold-light:#efd48e; --muted:#aaa49a; --line:rgba(211,177,108,.42); --plum:#2f0752; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--ink); color:#f4f1eb; font-family:Inter,Arial,sans-serif; font-size:16px; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(100% - 44px, 1600px); margin:auto; }
+    .site-header { height:82px; display:flex; align-items:center; justify-content:space-between; gap:30px; position:absolute; z-index:2; left:0; right:0; color:#eee9df; }
+    .brand { letter-spacing:.18em; text-transform:uppercase; font-size:13px; font-weight:700; white-space:nowrap; }
+    .brand b { color:var(--gold-light); font-size:22px; letter-spacing:-.09em; margin-right:14px; }
+    .nav { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:30px; font-size:11px; font-weight:700; letter-spacing:.19em; text-transform:uppercase; }
+    .nav a { opacity:.8; transition:opacity .2s,color .2s; }.nav a:hover{opacity:1;color:var(--gold-light)}
+    .hero { min-height:720px; position:relative; display:grid; place-items:center; overflow:hidden; background:#080808; }
+    .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(0,0,0,.58),rgba(0,0,0,.22)),url('https://nk-consultancy-m30n9nmd6-nealkydd-4751s-projects.vercel.app/img/marble.webp') center/cover; filter:saturate(.78) contrast(1.08); }
+    .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.38),transparent 40%,rgba(0,0,0,.85)); }
+    .hero-inner { position:relative; z-index:1; width:min(100% - 44px,1120px); text-align:center; padding:136px 0 96px; }
+    .hero-logo { display:block; width:clamp(245px,29vw,390px); margin:0 auto; mix-blend-mode:screen; filter:drop-shadow(0 18px 24px rgba(0,0,0,.42)); }
+    .craft-lockup { margin:30px auto 0; }
+    .craft { margin:0; padding-left:.52em; color:var(--gold-light); font-size:clamp(38px,4.7vw,68px); font-weight:500; letter-spacing:.52em; line-height:1; text-transform:uppercase; }
+    .purpose { margin:20px 0 0; color:#d7d0c2; font-size:clamp(15px,1.55vw,21px); font-weight:500; letter-spacing:.03em; line-height:1.35; }
+    .button { display:inline-flex; min-height:50px; align-items:center; justify-content:center; border:1px solid var(--gold); padding:0 24px; color:var(--gold-light); font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; transition:.2s ease; }
+    .button:hover { background:var(--gold); color:#111; }.button--fill{background:var(--gold);color:#111}.button--fill:hover{background:var(--gold-light)}
+    .hero-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:34px; }
+    main { padding:100px 0 0; }
+    .section-kicker { color:var(--gold); font-size:12px; letter-spacing:.22em; font-weight:700; text-transform:uppercase; }
+    .tabs { display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 42px; }
+    .tab { background:transparent; color:#d9d4cb; border:1px solid rgba(211,177,108,.32); padding:14px 19px; font:700 12px/1 Inter,Arial,sans-serif; letter-spacing:.15em; text-transform:uppercase; cursor:pointer; }
+    .tab[aria-selected="true"] { background:var(--gold); color:#101012; border-color:var(--gold); }
+    .project { display:none; grid-template-columns:minmax(0, .92fr) minmax(0, 1.08fr); border-top:1px solid var(--line); background:var(--panel); min-height:500px; }
+    .project.active { display:grid; }
+    .project-copy { display:flex; flex-direction:column; justify-content:flex-start; padding:52px; }
+    h2 { margin:13px 0 22px; font-size:clamp(30px,4vw,56px); line-height:1.03; letter-spacing:-.055em; font-weight:700; text-transform:uppercase; }
+    .project-copy p { max-width:540px; margin:0; color:var(--muted); font-size:16px; line-height:1.75; }
+    .tag-list { display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 34px; }
+    .tag { border:1px solid rgba(211,177,108,.5); padding:10px 13px; color:var(--gold-light); font-size:11px; letter-spacing:.14em; font-weight:700; text-transform:uppercase; }
+    .project-actions { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:auto; padding-top:5px; }
+    .project-visual { min-height:500px; overflow:hidden; background:#181517; }
+    .project-visual img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
+    .other-visual { background:linear-gradient(125deg,#31065b,#12031e 52%,#09090b); position:relative; overflow:hidden; }.other-visual:before { content:""; position:absolute; width:120%; height:160%; border:2px solid rgba(238,105,255,.58); border-radius:50%; top:-65%; left:-25%; box-shadow:0 0 90px rgba(150,40,255,.4); }.other-visual:after { content:""; position:absolute; width:100%; height:100%; background:linear-gradient(115deg,transparent 36%,rgba(255,93,218,.3) 38%,transparent 40%); }
+    .footer { margin-top:100px; border-top:1px solid rgba(211,177,108,.34); min-height:245px; position:relative; overflow:hidden; background:#0b0b0c; }
+    .footer-arc { position:absolute; inset:0 0 0 auto; width:min(42vw,650px); background:url('assets/purple-arc-footer.webp') center/cover; opacity:.9; }
+    .footer-arc:before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#0b0b0c 0%,rgba(11,11,12,.83) 12%,transparent 56%); }
+    .footer-inner { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:32px; min-height:245px; }
+    .footer-heading { margin:0; color:#f3efe8; font-size:clamp(24px,3vw,38px); font-weight:700; letter-spacing:-.05em; text-transform:uppercase; }
+    .footer p { margin:12px 0 0; color:#b0aaa2; font-size:14px; line-height:1.55; }
+    .footer-links { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+    .footer-links a { min-width:110px; border:1px solid rgba(211,177,108,.7); padding:14px 17px; text-align:center; color:var(--gold-light); transition:.2s ease; }
+    .footer-links a:hover { background:var(--gold); color:#121214; }
+    @media (max-width:900px){.site-header{height:auto;padding:24px 0;align-items:flex-start}.nav{gap:15px;max-width:58%}.hero{min-height:650px}.project,.project.active{grid-template-columns:1fr}.project-copy{padding:42px 30px}.project-visual{min-height:370px;order:-1}.project-actions{grid-template-columns:1fr}.footer-inner{align-items:flex-start;justify-content:center;flex-direction:column;padding:42px 0}.footer-arc{width:82vw;opacity:.55}}
+    @media (max-width:580px){.shell{width:min(100% - 28px,1600px)}.site-header{position:relative}.hero{min-height:570px}.hero-inner{padding-top:74px;width:min(100% - 28px,1120px)}.hero-logo{width:min(76vw,310px)}.craft-lockup{margin-top:24px}.craft{font-size:clamp(30px,10vw,48px);letter-spacing:.42em;padding-left:.42em}.purpose{font-size:15px}.nav{max-width:none;justify-content:flex-start}.nav a{font-size:9px}.project-copy{padding:36px 22px}.tabs{margin-bottom:28px}.tag-list{gap:8px}.tag{font-size:10px}.footer-links{gap:15px;flex-wrap:wrap}}
+  </style>
+</head>
+<body>
+  <header class="shell site-header"><a class="brand" href="#top"><b>NK</b> Consultancy</a><nav class="nav" aria-label="Primary"><a href="#projects">Projects</a><a href="https://quantaflexmedia.com/" target="_blank" rel="noreferrer">QuantaFlex</a><a href="https://play.google.com/store/apps/details?id=com.astroqabalah.treereader" target="_blank" rel="noreferrer">Tree Reader</a><a href="about.html">About</a><a href="#contact">Contact</a></nav></header>
+  <section class="hero" id="top"><div class="hero-inner"><img class="hero-logo" src="assets/nk-consultancy-master.webp" alt="NK Consultancy"><div class="craft-lockup"><p class="craft">C R A F T</p><p class="purpose">with clarity of purpose</p></div></div></section>
+  <main class="shell"><section id="projects"><p class="section-kicker">Selected projects</p><div class="tabs" role="tablist" aria-label="Selected projects"><button class="tab" role="tab" aria-selected="true" aria-controls="quantaflex" id="tab-quantaflex">QuantaFlex</button><button class="tab" role="tab" aria-selected="false" aria-controls="tree-reader" id="tab-tree">Tree Reader</button></div>
+    <article class="project active" id="quantaflex" role="tabpanel" aria-labelledby="tab-quantaflex"><div class="project-copy"><p class="section-kicker">Media software</p><h2>QuantaFlex</h2><p>One permanent toolkit for creating, teaching, presenting and inspecting media. Designed and brought to market as a complete product, brand and online experience.</p><div class="tag-list"><span class="tag">Product</span><span class="tag">UI / UX</span><span class="tag">Brand identity</span><span class="tag">Launch</span></div><div class="project-actions"><a class="button button--fill" href="https://quantaflexmedia.com/" target="_blank" rel="noreferrer">Visit QuantaFlex</a><a class="button" href="https://shop.quantaflexmedia.com/" target="_blank" rel="noreferrer">Buy QuantaFlex</a><a class="button" href="https://www.behance.net/rogerkydd" target="_blank" rel="noreferrer">On Behance</a></div></div><div class="project-visual"><img src="https://nk-consultancy-m30n9nmd6-nealkydd-4751s-projects.vercel.app/img/apps/qf-behance.webp" alt="QuantaFlex premium media software"></div></article>
+    <article class="project" id="tree-reader" role="tabpanel" aria-labelledby="tab-tree" hidden><div class="project-copy"><p class="section-kicker">Mobile experience</p><h2>Tree Reader</h2><p>A focused digital reader for personal reflection and symbolic insight, delivered across web and mobile with a clear, elegant journey from discovery to daily use.</p><div class="tag-list"><span class="tag">Product</span><span class="tag">Mobile</span><span class="tag">Web</span><span class="tag">Launch</span></div><div class="project-actions"><a class="button button--fill" href="https://play.google.com/store/apps/details?id=com.astroqabalah.treereader" target="_blank" rel="noreferrer">Google Play</a><a class="button" href="https://www.stoicqabalah.com/" target="_blank" rel="noreferrer">Discover</a><span></span></div></div><div class="project-visual"><img src="https://nk-consultancy-m30n9nmd6-nealkydd-4751s-projects.vercel.app/img/apps/tree.webp" alt="Tree Reader mobile app"></div></article>
+  </section></main>
+  <footer class="footer" id="contact"><div class="footer-arc" aria-hidden="true"></div><div class="shell footer-inner"><div><p class="section-kicker">NK Consultancy</p><h2 class="footer-heading">Craft, with clarity.</h2><p>Product, brand and digital experiences made to matter.</p></div><nav class="footer-links" aria-label="Footer links"><a href="mailto:hello@nakconsultancy.com">Email</a><a href="https://www.behance.net/rogerkydd" target="_blank" rel="noreferrer">Behance</a></nav></div></footer>
+  <script>
+    const tabs=[...document.querySelectorAll('[role="tab"]')]; const panels=[...document.querySelectorAll('[role="tabpanel"]')];
+    tabs.forEach(tab=>tab.addEventListener('click',()=>{tabs.forEach(t=>t.setAttribute('aria-selected','false'));panels.forEach(p=>{p.hidden=true;p.classList.remove('active')});tab.setAttribute('aria-selected','true');const panel=document.getElementById(tab.getAttribute('aria-controls'));panel.hidden=false;panel.classList.add('active')}));
+  </script>
+</body>
+</html>
