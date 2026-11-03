@@ -25,6 +25,9 @@
     @media(max-width:760px){.shell{width:min(100% - 28px,1600px)}.site-header{min-height:0;align-items:flex-start;flex-direction:column;gap:13px;padding:22px 0}.nav{justify-content:flex-start}.hero-content{width:min(100% - 28px,660px);padding:150px 0 72px}.logo-plaque{width:min(79vw,390px)}.projects{padding:82px 0}.projects-grid{grid-template-columns:1fr}.project-card{min-height:300px}.footer-inner{min-height:280px;align-items:flex-start;justify-content:center;flex-direction:column;padding:44px 0}.footer-links{justify-content:flex-start}}
     /* Full-resolution approved arc artwork: kept crisp in the footer ribbon. */
     .footer-ribbon{height:clamp(52px,4.5vw,70px);background-image:url('assets/purple-arc-footer-band.png');background-position:center;background-size:100% 100%;background-repeat:no-repeat}
+    /* Quiet navigation: colour is reserved for the hover state. */
+    .nav a{min-height:30px;padding:0 8px;border:0;background:transparent;color:#86898c;font-size:9px;letter-spacing:.15em;text-decoration:none;box-shadow:none}
+    .nav a:hover,.nav a:focus-visible{border:0;background:transparent;color:#e57a32;text-decoration:none;outline:0}
   </style>
 </head>
 <body>
@@ -61,7 +64,7 @@
   <footer class="footer">
     <div class="footer-ribbon" aria-hidden="true"></div>
     <div class="shell footer-inner">
-      <div><p class="footer-name">NK Consultancy</p><p class="footer-copy">Craft, with clarity of purpose.</p></div>
+      <div><p class="footer-name">NAK Consultancy</p></div>
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="#projects">Projects</a>
         <a href="work.html#quantaflex">QuantaFlex</a>
