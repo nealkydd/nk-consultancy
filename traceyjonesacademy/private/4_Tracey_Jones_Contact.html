@@ -443,6 +443,69 @@ input[type=checkbox]{accent-color:var(--plan-gold);width:16px;height:16px}
 .ct-book-foot{font:400 13px/1.5 var(--sans);color:rgba(255,255,255,.5);margin-top:8px}
 @media (max-width:900px){.ct{grid-template-columns:1fr}.ct-intro{padding:40px 32px}.ct-right{padding:48px 32px}.ct-book{padding:72px 24px}.ct-slots{grid-template-columns:repeat(2,1fr);width:100%}}
 
+.ct-email{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:18px;padding-top:22px;border-top:1px solid rgba(168,156,98,.4)}
+.ct-email p{font:400 16px/1.6 var(--sans);color:rgba(255,255,255,.82)}
+.ct-email .btn{border-radius:0}
+.ct-email .ct-details{margin-top:4px}.ct-email .ct-details a{color:var(--plan-gold)}
+.ct-or{font:400 15px/1.6 var(--sans);color:#5b6472;margin-top:-12px}.ct-or a{color:var(--gold-deep);font-weight:700}
+
+</style>
+<style>
+/* Shared site UI · 24 Nov 2026: neater header button, "coming soon" links, booking + log-in pop-ups */
+
+/* header button: smaller and neater */
+.site-header .btn-small{height:30px;padding:0 14px;font-size:11px;letter-spacing:.14em;border-radius:4px}
+.nav-actions{gap:18px}
+
+/* links to pages not built yet: greyed, not clickable */
+a.is-soon{color:rgba(160,166,176,.75)!important;cursor:not-allowed;text-decoration:none}
+a.is-soon:hover{color:rgba(160,166,176,.75)!important}
+.main-nav a.is-soon{color:rgba(246,243,238,.38)!important}
+.btn.is-soon{background:#c9c6bf!important;color:#6b6f76!important;filter:none!important}
+.s-tile a.is-soon{cursor:default;color:var(--pearl)!important}
+.s-tile a.is-soon .s-arrow{display:none}
+.s-tile a.is-soon::before{content:"Page coming soon";position:absolute;top:14px;right:14px;z-index:2;font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(246,243,238,.85);background:rgba(31,42,60,.55);border:1px solid rgba(246,243,238,.25);padding:6px 8px}
+.soon-tip{position:fixed;z-index:9000;pointer-events:none;font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--gold-pale);padding:7px 9px;border-radius:2px;opacity:0;transition:opacity .2s}
+.soon-tip.on{opacity:1}
+
+/* pop-ups */
+.tj-modal{position:fixed;inset:0;z-index:9500;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(14,27,51,.62);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s .35s}
+.tj-modal.open{opacity:1;visibility:visible;transition:opacity .35s var(--ease)}
+.tj-panel{position:relative;width:min(640px,100%);max-height:calc(100vh - 48px);overflow:auto;background:var(--pearl);border-top:4px solid var(--plan-gold);box-shadow:0 30px 80px rgba(14,27,51,.45);transform:translateY(16px);transition:transform .45s var(--ease)}
+.tj-modal.open .tj-panel{transform:none}
+.tj-head{background:var(--navy);padding:30px 40px 26px;display:flex;flex-direction:column;gap:10px}
+.tj-head .eyebrow{color:var(--plan-gold)}
+.tj-head h2{font:400 30px/1.25 var(--serif);color:var(--white)}
+.tj-head p{font:400 15px/1.6 var(--sans);color:rgba(255,255,255,.78)}
+.tj-close{position:absolute;top:14px;right:16px;width:36px;height:36px;border:0;background:transparent;color:var(--pearl);font:300 28px/1 var(--sans);cursor:pointer}
+.tj-close:hover{color:var(--plan-gold)}
+.tj-tabs{display:flex;border-bottom:1px solid #e2dccb;background:var(--white)}
+.tj-tabs button{flex:1;padding:16px 10px;border:0;background:transparent;font:700 12px/1 var(--sans);letter-spacing:.16em;color:#6b6f76;cursor:pointer;border-bottom:2px solid transparent}
+.tj-tabs button.on{color:var(--plan-navy);border-bottom-color:var(--plan-gold)}
+.tj-body{padding:28px 40px 34px;display:flex;flex-direction:column;gap:14px}
+.tj-body[hidden]{display:none}
+.tj-form{display:flex;flex-direction:column;gap:12px}
+.tj-form input:not([type=checkbox]),.tj-form textarea{font:400 15px/1.4 var(--sans);color:var(--plan-navy);background:var(--white);border:1px solid #d9cfb2;padding:13px 14px;width:100%;border-radius:0}
+.tj-form input:focus,.tj-form textarea:focus{outline:2px solid var(--plan-gold);outline-offset:0}
+.tj-interest{border:1px solid #d9cfb2;background:var(--white);padding:12px 14px;display:flex;flex-wrap:wrap;gap:8px 16px;font:400 14px/1.4 var(--sans);color:var(--plan-navy)}
+.tj-interest legend{float:left;margin-right:6px;color:#5b6472}
+.tj-interest label,.tj-check{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font:400 14px/1.4 var(--sans);color:var(--plan-navy)}
+.tj-form input[type=checkbox]{accent-color:var(--plan-gold);width:15px;height:15px}
+.tj-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.tj-row .btn{border:0;border-radius:0;cursor:pointer}
+.tj-link{font:700 13px/1.4 var(--sans);letter-spacing:.06em;color:var(--gold-deep);background:none;border:0;cursor:pointer;padding:0}
+.tj-msg{font:400 15px/1.6 var(--serif);color:var(--plan-navy);border-left:3px solid var(--plan-gold);padding:10px 14px;background:var(--white)}
+.tj-email{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid #d9cfb2;background:var(--white);padding:14px 16px;font:400 14px/1.5 var(--sans);color:var(--plan-navy)}
+.tj-email a{font:700 12px/1 var(--sans);letter-spacing:.14em;color:var(--gold-deep);white-space:nowrap}
+.tj-slots{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.tj-slots .day{display:flex;flex-direction:column;gap:8px}
+.tj-slots p{font:700 11px/1 var(--sans);letter-spacing:.16em;color:var(--gold-deep);text-transform:uppercase;margin-bottom:2px}
+.tj-slots button{font:400 14px/1 var(--sans);color:var(--plan-navy);background:var(--white);border:1px solid #d9cfb2;padding:12px 0;cursor:pointer;transition:background .2s,color .2s}
+.tj-slots button:hover,.tj-slots button.on{background:var(--plan-navy);color:var(--white);border-color:var(--plan-navy)}
+.tj-note{font:400 12px/1.5 var(--sans);color:#8a8f97}
+body.tj-lock{overflow:hidden}
+@media (max-width:600px){.tj-head,.tj-body{padding-left:22px;padding-right:22px}.tj-slots{grid-template-columns:repeat(3,1fr)}}
+
 </style>
 </head>
 <body>
@@ -459,7 +522,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
   </a>
   <nav class="main-nav" aria-label="Main">
     <a href="1_Tracey_Jones_Home.html" data-nav="home">Home</a>
-    <a href="3_Tracey_Jones_Specialisms_transition_study.html" data-nav="spec">Specialist<br>support</a>
+    <a href="3_Tracey_Jones_Specialist_Support.html" data-nav="spec">Specialist<br>support</a>
     <a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#leadership" data-nav="lead">Leadership &amp;<br>team development</a>
     <a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#work" data-nav="coach">Transformational<br>coaching</a>
     <a href="#" data-nav="dl">Digital<br>learning</a>
@@ -483,11 +546,12 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
         <p class="eyebrow eyebrow-gold r">CONTACT</p>
         <h1 id="ct-title" class="ct-title r">Begin with a conversation.</h1>
         <p class="ct-lead r">Every enquiry is handled personally and in complete confidence.</p>
-        <p class="ct-details r"><span class="ph" title="To be supplied">[email]</span> &nbsp;·&nbsp; <span class="ph" title="To be supplied">[phone]</span></p>
+        <div class="ct-email r"><p>Prefer email? Write to Tracey directly and she will reply personally.</p><a class="btn btn-gold" href="mailto:support@traceyjones.academy">EMAIL TRACEY&nbsp;&nbsp;›</a><p class="ct-details"><a href="mailto:support@traceyjones.academy">support@traceyjones.academy</a> &nbsp;·&nbsp; <span class="ph" title="To be supplied">[phone]</span></p></div>
       </div>
     </div>
     <div class="ct-right">
       <p class="eyebrow eyebrow-gold r">BOOK A CONSULTATION OR SEND AN ENQUIRY</p>
+      <p class="ct-or r">Use the form, <a href="#book">book a time</a>, or email Tracey directly.</p>
       <form class="ct-form r" id="enquiry" novalidate>
         <label class="sr" for="f-name">Name</label><input id="f-name" name="name" placeholder="Name" required>
         <label class="sr" for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="Email" required>
@@ -535,7 +599,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
     <p class="f-tag">ABOUT · WORK · LEARN</p>
   </div>
   <nav class="f-col" aria-label="Explore"><p>EXPLORE</p><span class="f-div"></span><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#about">About Tracey</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#work">Work with Tracey</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#coaching">Transformational Coaching</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#leadership">Leadership &amp; Team Development</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#transition">Transition Support</a></nav>
-  <nav class="f-col" aria-label="Specialist support"><p>SPECIALIST SUPPORT</p><span class="f-div"></span><a href="3_Tracey_Jones_Specialisms_transition_study.html">Specialist Overview</a><a href="#">UHNW Individuals &amp; Families</a><a href="#">Sport &amp; Elite Athletes</a><a href="#">Politics &amp; Public Office</a><a href="#">Military &amp; Veterans</a><a href="#">Maritime &amp; Yacht Crew</a><a href="#">Entertainment</a></nav>
+  <nav class="f-col" aria-label="Specialist support"><p>SPECIALIST SUPPORT</p><span class="f-div"></span><a href="3_Tracey_Jones_Specialist_Support.html">Specialist Overview</a><a href="#">UHNW Individuals &amp; Families</a><a href="#">Sport &amp; Elite Athletes</a><a href="#">Politics &amp; Public Office</a><a href="#">Military &amp; Veterans</a><a href="#">Maritime &amp; Yacht Crew</a><a href="#">Entertainment</a></nav>
   <nav class="f-col" aria-label="Learning and insights"><p>LEARNING &amp; INSIGHTS</p><span class="f-div"></span><a href="#">Digital Learning</a><a href="#">Personal Growth Programme</a><a href="#">Success Stories</a><a href="#">Case Studies</a><a href="#">Podcast</a></nav>
   <nav class="f-col" aria-label="Support and contact"><p>SUPPORT &amp; CONTACT</p><span class="f-div"></span><a href="4_Tracey_Jones_Contact.html">Book a Conversation</a><a href="#">Log in / My Account</a><a href="#">My Courses</a><a href="#">Basket / Checkout</a><a href="#">Terms · Privacy · Cookies</a><a href="#">Refunds · Complaints</a></nav>
   <div class="f-base"><span>Tracey Jones Academy</span><span>Contact details and social links to be confirmed</span></div>
@@ -619,6 +683,118 @@ addEventListener('scroll',()=>{const c=document.querySelector('.scroll-cue'); if
 <script>
 (function(){const f=document.getElementById('enquiry');f.addEventListener('submit',e=>{e.preventDefault();f.querySelector('.ct-thanks').hidden=false;f.querySelectorAll('input,textarea').forEach(x=>{if(x.type==='checkbox')x.checked=false;else x.value='';});});
 const out=document.querySelector('.ct-booked');document.querySelectorAll('.ct-slots button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.ct-slots button').forEach(x=>x.classList.remove('on'));b.classList.add('on');out.hidden=false;out.textContent='You have chosen '+b.parentElement.firstElementChild.textContent+' at '+b.textContent+'. In the live site this confirms the booking and sends a calendar invitation. (Preview only.)';}));})();
+</script>
+<script>
+/* Shared site UI · 24 Nov 2026
+   1. links to pages not built yet are greyed out and not clickable ("Coming soon")
+   2. every Book / Talk / Enquire button opens the booking pop-up (enquiry form + Book a time)
+   3. "Log in" opens the learner log-in pop-up on every page
+   Preview only: nothing is sent; the live site connects these to Tracey's inbox, calendar and /user-account/. */
+(function () {
+  const EMAIL = 'support@traceyjones.academy';
+  const slots = [['Mon', ['09:30', '14:00']], ['Tue', ['10:00', '16:30']], ['Wed', ['11:30', '15:00']], ['Thu', ['09:00', '13:30']], ['Fri', ['10:30']]];
+  const interests = ['1:1 coaching', 'Team development', 'Specialist support', 'PGP', 'Speaking'];
+
+  /* footer "Log in / My Account" and "My Courses" open the log-in pop-up */
+  document.querySelectorAll('.site-footer a[href="#"]').forEach(a => { if (/^(Log in|My Courses)/i.test(a.textContent.trim())) a.classList.add('login'); });
+
+  /* ---------- 1. coming soon ---------- */
+  const tip = document.createElement('span'); tip.className = 'soon-tip'; tip.textContent = 'Coming soon'; document.body.appendChild(tip);
+  document.querySelectorAll('a[href="#"]').forEach(a => {
+    if (a.matches('.login,[data-modal]')) return;
+    a.classList.add('is-soon'); a.setAttribute('aria-disabled', 'true'); a.setAttribute('tabindex', '-1');
+    a.addEventListener('click', e => e.preventDefault());
+    a.addEventListener('mousemove', e => { tip.style.left = (e.clientX + 14) + 'px'; tip.style.top = (e.clientY + 16) + 'px'; tip.classList.add('on'); });
+    a.addEventListener('mouseleave', () => tip.classList.remove('on'));
+  });
+
+  /* ---------- pop-up builder ---------- */
+  function modal(id, html) {
+    const m = document.createElement('div'); m.className = 'tj-modal'; m.id = id;
+    m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-labelledby', id + '-t');
+    m.innerHTML = '<div class="tj-panel"><button class="tj-close" type="button" aria-label="Close">×</button>' + html + '</div>';
+    document.body.appendChild(m);
+    m.addEventListener('click', e => { if (e.target === m || e.target.closest('.tj-close')) close(m); });
+    return m;
+  }
+  let last = null;
+  function open(m) { last = document.activeElement; document.querySelectorAll('.tj-modal.open').forEach(close); m.classList.add('open'); document.body.classList.add('tj-lock');
+    setTimeout(() => { const f = m.querySelector('input:not([type=checkbox]),button.tj-tab.on'); f && f.focus(); }, 60); }
+  function close(m) { m.classList.remove('open'); document.body.classList.remove('tj-lock'); last && last.focus && last.focus(); }
+  addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.tj-modal.open').forEach(close); });
+
+  /* ---------- 2. booking pop-up ---------- */
+  const book = modal('tj-book', `
+    <div class="tj-head"><p class="eyebrow">BOOK A CONVERSATION</p><h2 id="tj-book-t">Begin with a conversation.</h2>
+      <p>Every enquiry is handled personally and in complete confidence.</p></div>
+    <div class="tj-tabs" role="tablist"><button class="tj-tab on" type="button" data-tab="enq" role="tab" aria-selected="true">SEND AN ENQUIRY</button><button class="tj-tab" type="button" data-tab="time" role="tab" aria-selected="false">BOOK A TIME</button></div>
+    <div class="tj-body" data-pane="enq">
+      <form class="tj-form" novalidate>
+        <input name="name" placeholder="Name" aria-label="Name" required>
+        <input name="email" type="email" placeholder="Email" aria-label="Email" required>
+        <input name="phone" type="tel" placeholder="Phone (optional)" aria-label="Phone (optional)">
+        <fieldset class="tj-interest"><legend>I’m interested in:</legend>${interests.map(i => `<label><input type="checkbox" value="${i}"> ${i}</label>`).join('')}</fieldset>
+        <textarea rows="3" placeholder="How can I help?" aria-label="How can I help?"></textarea>
+        <label class="tj-check"><input type="checkbox"> Please treat this as a confidential enquiry</label>
+        <div class="tj-row"><button class="btn btn-gold" type="submit">SEND ENQUIRY&nbsp;&nbsp;›</button><button class="tj-link" type="button" data-go="time">or book a time ›</button></div>
+        <p class="tj-msg" hidden>Thank you. Your enquiry has been received and will be handled personally and in confidence. <em>(Preview only: nothing has been sent.)</em></p>
+      </form>
+      <div class="tj-email"><span>Prefer email? Write to Tracey directly.</span><a href="mailto:${EMAIL}">EMAIL TRACEY ›</a></div>
+    </div>
+    <div class="tj-body" data-pane="time" hidden>
+      <p class="tj-note" style="font-size:14px;color:var(--plan-navy)">Choose a time for a 30-minute confidential conversation. No obligation.</p>
+      <div class="tj-slots">${slots.map(([d, t]) => `<div class="day"><p>${d}</p>${t.map(x => `<button type="button">${x}</button>`).join('')}</div>`).join('')}</div>
+      <p class="tj-msg" hidden></p>
+      <p class="tj-note">Preview only. The live site will use Tracey’s own booking calendar and send a calendar invitation.</p>
+    </div>`);
+  const tabs = book.querySelectorAll('.tj-tab');
+  function show(which) { tabs.forEach(t => { const on = t.dataset.tab === which; t.classList.toggle('on', on); t.setAttribute('aria-selected', on); });
+    book.querySelectorAll('[data-pane]').forEach(p => p.hidden = p.dataset.pane !== which); }
+  tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.tab)));
+  book.querySelector('[data-go="time"]').addEventListener('click', () => show('time'));
+  book.querySelector('form').addEventListener('submit', e => { e.preventDefault(); const f = e.target; f.querySelector('.tj-msg').hidden = false;
+    f.querySelectorAll('input,textarea').forEach(x => { if (x.type === 'checkbox') x.checked = false; else x.value = ''; }); });
+  const bmsg = book.querySelector('[data-pane="time"] .tj-msg');
+  book.querySelectorAll('.tj-slots button').forEach(b => b.addEventListener('click', () => {
+    book.querySelectorAll('.tj-slots button').forEach(x => x.classList.remove('on')); b.classList.add('on'); bmsg.hidden = false;
+    bmsg.innerHTML = `You have chosen <strong>${b.parentElement.firstElementChild.textContent} at ${b.textContent}</strong>. In the live site this confirms the booking and sends a calendar invitation. <em>(Preview only.)</em>`; }));
+
+  const bookWords = /BOOK A (CONFIDENTIAL )?CONVERSATION|BOOK A CONSULTATION|TALK TO TRACEY|START A CONVERSATION|TALK ABOUT YOUR TEAM|DESIGN A PROGRAMME|ENQUIRE/i;
+  document.querySelectorAll('a').forEach(a => {
+    const t = a.textContent.replace(/\s+/g, ' ').trim();
+    if (a.matches('.main-nav a')) return;                       // the Contact tab still opens the Contact page
+    if (bookWords.test(t) || a.matches('.site-header .btn')) {
+      a.dataset.modal = 'book'; a.classList.remove('is-soon'); a.removeAttribute('aria-disabled'); a.removeAttribute('tabindex');
+      a.addEventListener('click', e => { e.preventDefault(); show('enq'); open(book); });
+    }
+  });
+  if (!document.getElementById('book'))   // on the Contact page "Book a time" scrolls to its own section
+    document.querySelectorAll('a[href="#book"],[data-open="book-time"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); show('time'); open(book); }));
+
+  /* ---------- 3. log-in pop-up ---------- */
+  const login = modal('tj-login', `
+    <div class="tj-head"><p class="eyebrow">LEARNER LOG IN</p><h2 id="tj-login-t">Welcome back.</h2>
+      <p>Log in to continue your programme and see your courses.</p></div>
+    <div class="tj-body">
+      <form class="tj-form" novalidate>
+        <input name="user" type="email" autocomplete="username" placeholder="Email or username" aria-label="Email or username" required>
+        <input name="pass" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required>
+        <div class="tj-row" style="justify-content:space-between"><label class="tj-check"><input type="checkbox"> Remember me</label><button class="tj-link" type="button" data-forgot>Forgot your password?</button></div>
+        <div class="tj-row"><button class="btn btn-gold" type="submit">LOG IN&nbsp;&nbsp;›</button></div>
+        <p class="tj-msg" hidden></p>
+      </form>
+      <div class="tj-email"><span>New here? Start with the Personal Growth Programme.</span><a href="#" class="is-soon" aria-disabled="true">START THE PGP ›</a></div>
+      <p class="tj-note">Preview only. On the live site this signs you in to My Courses (your existing Tracey Jones Academy account).</p>
+    </div>`);
+  const lf = login.querySelector('form'), lmsg = lf.querySelector('.tj-msg');
+  lf.addEventListener('submit', e => { e.preventDefault(); lmsg.hidden = false;
+    lmsg.innerHTML = 'In the live site you would now be signed in and taken to <strong>My Courses</strong>. <em>(Preview only: no account was checked.)</em>'; lf.querySelector('[name=pass]').value = ''; });
+  login.querySelector('[data-forgot]').addEventListener('click', () => { lmsg.hidden = false;
+    lmsg.innerHTML = 'In the live site this sends a password reset link to your email. <em>(Preview only.)</em>'; });
+  login.querySelector('.is-soon').addEventListener('click', e => e.preventDefault());
+  document.querySelectorAll('a.login').forEach(a => { a.dataset.modal = 'login'; a.addEventListener('click', e => { e.preventDefault(); open(login); }); });
+})();
+
 </script>
 </body>
 </html>
