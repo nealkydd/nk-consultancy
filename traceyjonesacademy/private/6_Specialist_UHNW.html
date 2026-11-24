@@ -10,6 +10,7 @@
 #tja-gate button{background:#a89c62;color:#1f2a3c;border:0;padding:15px 34px;font:700 13px/1 Lato,Arial;letter-spacing:.14em;cursor:pointer}
 #tja-gate .e{color:#e3bf7a;font-size:14px;min-height:20px}</style>
 <script>try{if(localStorage.getItem('tja-ok')!=='3f7b96ba5d6534c0988ff0a1c54154f5e1a60609a681a23f1ab6c8cfee52af0e')document.documentElement.classList.add('tja-locked')}catch(e){document.documentElement.classList.add('tja-locked')}</script>
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tracey Jones Academy · UHNW individuals and families · Specialist Support (draft, 24 Nov 2026)</title>
@@ -589,6 +590,9 @@ a{color:inherit;text-decoration:none}
 @keyframes sxStreakR{0%{transform:translateX(110%);opacity:0}15%{opacity:1}100%{transform:translateX(-260%);opacity:0}}
 @media (max-width:1000px){.sx-right .sx-copy{padding:0 28px}.sx-right .sx-back{right:28px}}
 
+/* no flash before the entrance: hide the picture and words until the hero is ready to play */
+html.motion .sx-hero:not(.sx-anim) .sx-img,html.motion .sx-hero:not(.sx-anim) .sx-copy,html.motion .sx-hero:not(.sx-anim) .sx-back{opacity:0}
+
 </style>
 <style>
 /* Shared site UI · 24 Nov 2026: neater header button, "coming soon" links, booking + log-in pop-ups */
@@ -653,7 +657,7 @@ body.tj-lock{overflow:hidden}
 <script>(function(){var H='3f7b96ba5d6534c0988ff0a1c54154f5e1a60609a681a23f1ab6c8cfee52af0e',r=document.documentElement,g=document.getElementById('tja-gate');if(!r.classList.contains('tja-locked')){g.remove();return}g.hidden=false;
 var f=g.querySelector('form'),i=g.querySelector('input'),e=g.querySelector('.e');
 f.addEventListener('submit',async function(ev){ev.preventDefault();var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(i.value));var h=Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');
-if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja-locked');g.remove();}else{e.textContent='That password is not right. Please try again.';i.value='';i.focus();}});})();</script>
+if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja-locked');g.remove();setTimeout(function(){window.dispatchEvent(new Event('tja-unlock'));var rp=document.querySelector('.replay');if(rp)rp.click();},60);}else{e.textContent='That password is not right. Please try again.';i.value='';i.focus();}});})();</script>
 
 <!-- Specialist support · UHNW individuals and families · deck copy verbatim -->
 <header class="site-header" id="top">
@@ -732,7 +736,12 @@ addEventListener('scroll',()=>{const c=document.querySelector('.scroll-cue'); if
     e.target.classList.add('in'); io.unobserve(e.target);
     e.target.querySelectorAll('[data-count]').forEach(el => setTimeout(() => count(el), 500));
   }), { threshold: 0.25 });
-  document.querySelectorAll('.reveal').forEach(s => io.observe(s));
+  /* sections with their own threshold (e.g. the Leading Self hero) wait until most of them is on screen */
+  const late = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.intersectionRatio < parseFloat(e.target.dataset.threshold)) return;
+    e.target.classList.add('in'); late.unobserve(e.target);
+  }), { threshold: [0.3, 0.45, 0.6, 0.75] });
+  document.querySelectorAll('.reveal').forEach(s => (s.dataset.threshold ? late : io).observe(s));
   /* replaying moments (the Chrysalis wings): open each time they come into view, close again once out of view */
   const rio = new IntersectionObserver(entries => entries.forEach(e => e.target.classList.toggle('open', e.isIntersecting)), { threshold: 0.35 });
   document.querySelectorAll('[data-replay]').forEach(el => reduce ? el.classList.add('open') : rio.observe(el));
@@ -798,6 +807,10 @@ addEventListener('scroll',()=>{const c=document.querySelector('.scroll-cue'); if
         fx.style.setProperty('--sy', ((ev.clientY - r.top) / r.height * 100) + '%'); fx.style.setProperty('--sr', '260px'); });
       hero.addEventListener('pointerleave', () => { if (done) fx.style.opacity = '0'; });
     }
+
+    /* when the preview password screen is lifted, play the entrance again so it is seen */
+    addEventListener('tja-unlock', () => { hero.classList.remove('sx-go'); img.style.transition = ''; void hero.offsetWidth;
+      requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('sx-go'))); });
 
     /* parallax on the hero picture and the sport background */
     const bgs = [img, document.querySelector('.sx-duo-bg')].filter(Boolean);

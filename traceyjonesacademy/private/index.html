@@ -10,6 +10,7 @@
 #tja-gate button{background:#a89c62;color:#1f2a3c;border:0;padding:15px 34px;font:700 13px/1 Lato,Arial;letter-spacing:.14em;cursor:pointer}
 #tja-gate .e{color:#e3bf7a;font-size:14px;min-height:20px}</style>
 <script>try{if(localStorage.getItem('tja-ok')!=='3f7b96ba5d6534c0988ff0a1c54154f5e1a60609a681a23f1ab6c8cfee52af0e')document.documentElement.classList.add('tja-locked')}catch(e){document.documentElement.classList.add('tja-locked')}</script>
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tracey Jones Academy · Home (draft with motion, 17 Nov 2026)</title>
@@ -399,7 +400,7 @@ body.tj-lock{overflow:hidden}
 <script>(function(){var H='3f7b96ba5d6534c0988ff0a1c54154f5e1a60609a681a23f1ab6c8cfee52af0e',r=document.documentElement,g=document.getElementById('tja-gate');if(!r.classList.contains('tja-locked')){g.remove();return}g.hidden=false;
 var f=g.querySelector('form'),i=g.querySelector('input'),e=g.querySelector('.e');
 f.addEventListener('submit',async function(ev){ev.preventDefault();var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(i.value));var h=Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');
-if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja-locked');g.remove();}else{e.textContent='That password is not right. Please try again.';i.value='';i.focus();}});})();</script>
+if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja-locked');g.remove();setTimeout(function(){window.dispatchEvent(new Event('tja-unlock'));var rp=document.querySelector('.replay');if(rp)rp.click();},60);}else{e.textContent='That password is not right. Please try again.';i.value='';i.focus();}});})();</script>
 
 <!-- Copy is Tracey's deck V12 text exactly as in Figma page 06 (Home). Images are placeholders / AI stand-ins. -->
 
