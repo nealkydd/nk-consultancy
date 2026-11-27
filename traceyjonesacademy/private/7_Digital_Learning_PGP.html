@@ -894,6 +894,33 @@ body.tj-lock{overflow:hidden}
 .motion .reveal.in .panel.hold .lead{clip-path:inset(0 100% 0 0);transition:none}
 .motion .reveal.in .band-line.hold{opacity:0;transform:translateY(14px);transition:none}
 
+/* 27 Nov (Neal): livelier buttons. On hover a navy fill sweeps in from the left (white text), the button lifts a touch
+   and the arrow steps forward; a fine gold edge keeps it defined on dark sections. Outline buttons fill the same way. */
+.btn{background-repeat:no-repeat;background-position:left center;background-size:0% 100%;transition:background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease),filter .3s,transform .3s}
+.btn.btn-gold,.btn.btn-gold-bright,.btn.btn-outline-dark{background-image:linear-gradient(var(--plan-navy),var(--plan-navy));background-repeat:no-repeat;background-position:left center;background-size:0% 100%}
+.btn.btn-outline-light{background-image:linear-gradient(var(--pearl),var(--pearl));background-repeat:no-repeat;background-position:left center;background-size:0% 100%}
+.btn:hover,.btn:focus-visible{background-size:100% 100%;filter:none;translate:0 -2px;box-shadow:0 10px 22px rgba(20,30,48,.22)}
+.btn.btn-gold:hover,.btn.btn-gold-bright:hover,.btn.btn-gold:focus-visible,.btn.btn-gold-bright:focus-visible{color:var(--white);box-shadow:inset 0 0 0 1px var(--plan-gold),0 10px 22px rgba(20,30,48,.22)}
+.btn.btn-outline-dark:hover,.btn.btn-outline-dark:focus-visible{color:var(--white)}
+.btn.btn-outline-light:hover,.btn.btn-outline-light:focus-visible{color:var(--plan-navy)}
+.btn:active{translate:0 0;box-shadow:none}
+.btn.is-soon:hover{translate:none;box-shadow:none}
+.btn-arr{display:inline-block;transition:transform .35s var(--ease)}
+.btn:hover .btn-arr,.btn:focus-visible .btn-arr{transform:translateX(4px)}
+/* keep the entrance timings where buttons also reveal */
+.motion .reveal.in .btn.r{transition:opacity 1s var(--ease) calc(var(--d,0) * 1s),transform 1s var(--ease) calc(var(--d,0) * 1s),background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion .alchemy.reveal.in .btn.r{transition:-webkit-mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion.go .hero-buttons .btn,.motion.go .hero-buttons .btn:nth-child(1){transition:opacity .9s var(--ease) 4.05s,transform .9s var(--ease) 4.05s,filter .3s,background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion.go .hero-buttons .btn:nth-child(2){transition:opacity .9s var(--ease) 4.2s,transform .9s var(--ease) 4.2s,filter .3s,background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+@media (prefers-reduced-motion:reduce){.btn,.btn-arr{transition:color .2s,background-size .01s!important}.btn:hover{translate:none}.btn:hover .btn-arr{transform:none}}
+
+/* 27 Nov (Neal): Her Journey rebalanced. Shorter line length on the left, the pair sits closer, the panel centres against the text. */
+@media (min-width:1001px){
+  .ab-journey .pair{grid-template-columns:minmax(0,540px) minmax(0,470px);justify-content:center;column-gap:96px;align-items:center}
+  .ab-journey .para{font-size:17px;line-height:1.7}
+  .ab-journey .gold-italic{max-width:500px}
+}
+
 </style>
 </head>
 <body>
@@ -1251,6 +1278,21 @@ addEventListener('scroll',()=>{const c=document.querySelector('.scroll-cue'); if
   btn.addEventListener('click', () => toggle(!menu.classList.contains('open')));
   addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) toggle(false); });
   addEventListener('resize', () => { if (innerWidth > 1100 && menu.classList.contains('open')) toggle(false); });
+})();
+
+/* 27 Nov: the arrow at the end of a button label gets its own span so it can step forward on hover */
+(function () {
+  document.querySelectorAll('.btn').forEach(b => {
+    if (b.querySelector('.btn-arr')) return;
+    const w = document.createTreeWalker(b, NodeFilter.SHOW_TEXT); let n, last = null;
+    while ((n = w.nextNode())) if (n.nodeValue.includes('\u203A')) last = n;
+    if (!last) return;
+    const a = last.splitText(last.nodeValue.lastIndexOf('\u203A')); a.splitText(1);
+    const s = document.createElement('span'); s.className = 'btn-arr'; s.setAttribute('aria-hidden', 'true'); s.textContent = '\u203A';
+    a.parentNode.replaceChild(s, a);
+    /* one wrapper, so the arrow stays at the end of the last line in two-line buttons */
+    const l = document.createElement('span'); l.className = 'btn-l'; while (b.firstChild) l.appendChild(b.firstChild); b.appendChild(l);
+  });
 })();
 
 </script>
