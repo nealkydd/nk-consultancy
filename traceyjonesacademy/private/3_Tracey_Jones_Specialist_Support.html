@@ -619,6 +619,23 @@ body.tj-lock{overflow:hidden}
 @media (max-width:700px){.alchemy{--gx:58%;--gy:72%}}
 @media (prefers-reduced-motion:reduce){.motion .alchemy .r{-webkit-mask-image:none!important;mask-image:none!important}.motion .alchemy .bowl-quiet{opacity:1!important}}
 
+/* 27 Nov · About harbour (Neal): no left panel; the lighthouse opens left to right to the full width
+   and the line is written across behind the same edge. */
+.motion .band-pano img{clip-path:inset(0 100% 0 0)}
+.motion .band-pano.in img,.motion .band-pano.in.live img{clip-path:inset(0 0 0 0);transition:clip-path 2.4s cubic-bezier(.5,0,.25,1) .2s}
+.motion .band-pano .band-strap{opacity:1;transform:none;-webkit-mask-image:linear-gradient(90deg,#000 47.5%,transparent 52.5%);mask-image:linear-gradient(90deg,#000 47.5%,transparent 52.5%);-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0}
+.motion .band-pano.in .band-strap{opacity:1;transform:none;-webkit-mask-position:0 0;mask-position:0 0;transition:-webkit-mask-position 2.4s cubic-bezier(.5,0,.25,1) .55s,mask-position 2.4s cubic-bezier(.5,0,.25,1) .55s}
+@media (prefers-reduced-motion:reduce){.motion .band-pano .band-strap{-webkit-mask-image:none!important;mask-image:none!important}}
+
+/* 27 Nov (Neal, animation audit): items still below the fold wait (class hold, set by reveal.js) and animate as they come on screen */
+.motion .reveal.in .r.hold{opacity:0;transform:translateY(22px);transition:none}
+.motion .reveal.in .r-rule.hold i{transform:scaleX(0);transition:none}
+.motion .reveal.in .r-rule.hold b{opacity:0;transition:none}
+.motion .reveal.in .rise.hold .w>span,.motion .reveal.in .big-h.hold .w>span,.motion .reveal.in .w-hero-title.hold .w>span{transform:translateY(105%);transition:none}
+.motion .reveal.in .w-tiles li.hold::before,.motion .reveal.in .panel.hold::before{transform:scaleY(0);transition:none}
+.motion .reveal.in .panel.hold .lead{clip-path:inset(0 100% 0 0);transition:none}
+.motion .reveal.in .band-line.hold{opacity:0;transform:translateY(14px);transition:none}
+
 </style>
 </head>
 <body>
@@ -721,15 +738,34 @@ addEventListener('scroll',()=>{const c=document.querySelector('.scroll-cue'); if
       if (k < 1) requestAnimationFrame(step);
     })(t0);
   }
+  /* 27 Nov (Neal): anything still below the fold when its section arrives waits until it is itself on screen */
+  const ANIM = '.r, .r-rule, .rise, .big-h, .w-hero-title, .w-tiles li, .panel, .band-line';
+  const eio = new IntersectionObserver(entries => {
+    let k = 0;
+    entries.filter(e => e.isIntersecting).forEach(e => {
+      const el = e.target; eio.unobserve(el);
+      el.style.setProperty('--d', (0.05 + 0.12 * k++).toFixed(2));
+      el.classList.remove('hold');
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  function hold(sec) {
+    if (reduce) return;
+    const lim = innerHeight * 0.88;
+    sec.querySelectorAll(ANIM).forEach(el => { if (el.getBoundingClientRect().top > lim) { el.classList.add('hold'); eio.observe(el); } });
+  }
   const io = new IntersectionObserver(entries => entries.forEach(e => {
     if (!e.isIntersecting) return;
-    e.target.classList.add('in'); io.unobserve(e.target);
-    e.target.querySelectorAll('[data-count]').forEach(el => setTimeout(() => count(el), 500));
+    e.target.classList.add('in'); io.unobserve(e.target); hold(e.target);
   }), { threshold: 0.25 });
+  /* 27 Nov: each figure counts up when it is itself fully on screen (the section can arrive while the figures are still below the fold) */
+  const cio = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target); setTimeout(() => count(e.target), 300);
+  }), { threshold: 1, rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('[data-count]').forEach(el => { if (!reduce) el.textContent = '0' + (el.dataset.suffix || ''); cio.observe(el); });
   /* sections with their own threshold (e.g. the Leading Self hero) wait until most of them is on screen */
   const late = new IntersectionObserver(entries => entries.forEach(e => {
     if (e.intersectionRatio < parseFloat(e.target.dataset.threshold)) return;
-    e.target.classList.add('in'); late.unobserve(e.target);
+    e.target.classList.add('in'); late.unobserve(e.target); hold(e.target);
   }), { threshold: [0.3, 0.45, 0.6, 0.75] });
   document.querySelectorAll('.reveal').forEach(s => (s.dataset.threshold ? late : io).observe(s));
   /* replaying moments (the Chrysalis wings): open each time they come into view, close again once out of view */

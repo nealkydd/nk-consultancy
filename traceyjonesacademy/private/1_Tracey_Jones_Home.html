@@ -506,6 +506,23 @@ body.tj-lock{overflow:hidden}
 @media (max-width:700px){.alchemy{--gx:58%;--gy:72%}}
 @media (prefers-reduced-motion:reduce){.motion .alchemy .r{-webkit-mask-image:none!important;mask-image:none!important}.motion .alchemy .bowl-quiet{opacity:1!important}}
 
+/* 27 Nov · About harbour (Neal): no left panel; the lighthouse opens left to right to the full width
+   and the line is written across behind the same edge. */
+.motion .band-pano img{clip-path:inset(0 100% 0 0)}
+.motion .band-pano.in img,.motion .band-pano.in.live img{clip-path:inset(0 0 0 0);transition:clip-path 2.4s cubic-bezier(.5,0,.25,1) .2s}
+.motion .band-pano .band-strap{opacity:1;transform:none;-webkit-mask-image:linear-gradient(90deg,#000 47.5%,transparent 52.5%);mask-image:linear-gradient(90deg,#000 47.5%,transparent 52.5%);-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0}
+.motion .band-pano.in .band-strap{opacity:1;transform:none;-webkit-mask-position:0 0;mask-position:0 0;transition:-webkit-mask-position 2.4s cubic-bezier(.5,0,.25,1) .55s,mask-position 2.4s cubic-bezier(.5,0,.25,1) .55s}
+@media (prefers-reduced-motion:reduce){.motion .band-pano .band-strap{-webkit-mask-image:none!important;mask-image:none!important}}
+
+/* 27 Nov (Neal, animation audit): items still below the fold wait (class hold, set by reveal.js) and animate as they come on screen */
+.motion .reveal.in .r.hold{opacity:0;transform:translateY(22px);transition:none}
+.motion .reveal.in .r-rule.hold i{transform:scaleX(0);transition:none}
+.motion .reveal.in .r-rule.hold b{opacity:0;transition:none}
+.motion .reveal.in .rise.hold .w>span,.motion .reveal.in .big-h.hold .w>span,.motion .reveal.in .w-hero-title.hold .w>span{transform:translateY(105%);transition:none}
+.motion .reveal.in .w-tiles li.hold::before,.motion .reveal.in .panel.hold::before{transform:scaleY(0);transition:none}
+.motion .reveal.in .panel.hold .lead{clip-path:inset(0 100% 0 0);transition:none}
+.motion .reveal.in .band-line.hold{opacity:0;transform:translateY(14px);transition:none}
+
 </style>
 </head>
 <body class="is-loading">

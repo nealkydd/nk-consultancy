@@ -610,11 +610,11 @@ html.motion .sx-hero:not(.sx-anim) .sx-img,html.motion .sx-hero:not(.sx-anim) .s
 .fx-wipe .sx-sub{margin-top:auto;max-width:500px}
 .fx-wipe .sx-shade{background:linear-gradient(180deg,rgba(14,22,36,.5) 0%,rgba(14,22,36,.18) 22%,rgba(14,22,36,0) 36%,rgba(14,22,36,0) 66%,rgba(14,22,36,.62) 100%),linear-gradient(90deg,rgba(31,42,60,.32) 0%,rgba(31,42,60,0) 42%)}
 .fx-wipe.sx-anim .sx-img{clip-path:inset(0 0 0 100%);transform:translateX(6%);filter:blur(9px) brightness(1.12)}
-.fx-wipe.sx-anim.sx-go .sx-img{clip-path:inset(0 0 0 0);transform:none;filter:none;transition:clip-path 1.4s cubic-bezier(.65,0,.25,1),transform 1.4s cubic-bezier(.65,0,.25,1),filter 1.3s cubic-bezier(.3,.6,.2,1) .45s}
+.fx-wipe.sx-anim.sx-go .sx-img{clip-path:inset(0 0 0 0);transform:none;filter:none;transition:clip-path 1.54s cubic-bezier(.65,0,.25,1),transform 1.54s cubic-bezier(.65,0,.25,1),filter 1.43s cubic-bezier(.3,.6,.2,1) .5s}
 .fx-wipe .sx-fx::before,.fx-wipe .sx-fx::after{content:"";position:absolute;top:0;bottom:0;left:0;width:30%;opacity:0;transform:translateX(303%)}
 .fx-wipe .sx-fx::before{background:linear-gradient(90deg,rgba(246,243,238,0) 40%,rgba(227,191,122,.5) 50%,rgba(246,243,238,.22) 58%,rgba(246,243,238,.06) 80%,rgba(246,243,238,0));filter:blur(10px)}
 .fx-wipe .sx-fx::after{background:linear-gradient(90deg,transparent calc(50% - 1px),rgba(227,191,122,.75) calc(50% - 1px),rgba(227,191,122,.75) calc(50% + 1px),transparent calc(50% + 1px))}
-.fx-wipe.sx-anim.sx-go .sx-fx::before,.fx-wipe.sx-anim.sx-go .sx-fx::after{animation:sxWipeMove 1.4s cubic-bezier(.65,0,.25,1) both,sxWipeFade 1.4s linear both}
+.fx-wipe.sx-anim.sx-go .sx-fx::before,.fx-wipe.sx-anim.sx-go .sx-fx::after{animation:sxWipeMove 1.54s cubic-bezier(.65,0,.25,1) both,sxWipeFade 1.54s linear both  /* 10% slower (Neal) */}
 @keyframes sxWipeMove{from{transform:translateX(303%)}to{transform:translateX(-50%)}}
 @keyframes sxWipeFade{0%{opacity:0}10%{opacity:1}82%{opacity:1}100%{opacity:0}}
 /* desktop: the whole picture, edge to edge (height follows the photo), words above and below the cars */
@@ -628,6 +628,20 @@ html.motion .sx-hero:not(.sx-anim) .sx-img,html.motion .sx-hero:not(.sx-anim) .s
 @media (max-width:1000px){
   .fx-wipe .sx-copy{padding:8vh 28px 13vh}.fx-wipe .sx-title{font-size:32px}.fx-wipe .sx-sub{font-size:18px}
 }
+
+/* 27 Nov (Neal): the navy panels lose the checklist look. No ticks or rules: gold diamonds on a fine gold line,
+   serif items, more air. Scoped with .sx-ed (every sector page except UHNW, and PGP Benefits). */
+.sx-ed .sx-panel{padding:46px 44px 42px}
+.sx-ed .sx-panel .eyebrow{margin-bottom:28px}
+.sx-ed .sx-list{position:relative;gap:18px;padding-left:30px}
+.sx-ed .sx-list::before{content:"";position:absolute;left:4px;top:12px;bottom:12px;width:1px;background:linear-gradient(180deg,rgba(168,156,98,.75),rgba(168,156,98,.25));transform-origin:top}
+.sx-ed .sx-list li{position:relative;display:block;padding:0;border:0;font:400 16px/1.55 var(--serif);color:var(--pearl)}
+.sx-ed .sx-list li::before{content:"";position:absolute;left:-30px;top:calc(.775em - 4.5px);width:9px;height:9px;background:var(--plan-gold);transform:rotate(45deg)}
+.sx-ed .sx-tick{display:none}
+.sx-ed .sx-list::before{transform:scaleY(0)}
+.sx-ed .in .sx-list::before,.sx-ed .sx-panel.in .sx-list::before,.sx-ed .sx-list.in::before{transform:none;transition:transform 1.6s var(--ease) .15s}
+@media (prefers-reduced-motion:reduce){.sx-ed .sx-list::before{transform:none!important}}
+@media (max-width:1000px){.sx-ed .sx-panel{padding:36px 28px 32px}}
 
 </style>
 <style>
@@ -799,6 +813,23 @@ body.tj-lock{overflow:hidden}
 @media (max-width:700px){.alchemy{--gx:58%;--gy:72%}}
 @media (prefers-reduced-motion:reduce){.motion .alchemy .r{-webkit-mask-image:none!important;mask-image:none!important}.motion .alchemy .bowl-quiet{opacity:1!important}}
 
+/* 27 Nov · About harbour (Neal): no left panel; the lighthouse opens left to right to the full width
+   and the line is written across behind the same edge. */
+.motion .band-pano img{clip-path:inset(0 100% 0 0)}
+.motion .band-pano.in img,.motion .band-pano.in.live img{clip-path:inset(0 0 0 0);transition:clip-path 2.4s cubic-bezier(.5,0,.25,1) .2s}
+.motion .band-pano .band-strap{opacity:1;transform:none;-webkit-mask-image:linear-gradient(90deg,#000 47.5%,transparent 52.5%);mask-image:linear-gradient(90deg,#000 47.5%,transparent 52.5%);-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0}
+.motion .band-pano.in .band-strap{opacity:1;transform:none;-webkit-mask-position:0 0;mask-position:0 0;transition:-webkit-mask-position 2.4s cubic-bezier(.5,0,.25,1) .55s,mask-position 2.4s cubic-bezier(.5,0,.25,1) .55s}
+@media (prefers-reduced-motion:reduce){.motion .band-pano .band-strap{-webkit-mask-image:none!important;mask-image:none!important}}
+
+/* 27 Nov (Neal, animation audit): items still below the fold wait (class hold, set by reveal.js) and animate as they come on screen */
+.motion .reveal.in .r.hold{opacity:0;transform:translateY(22px);transition:none}
+.motion .reveal.in .r-rule.hold i{transform:scaleX(0);transition:none}
+.motion .reveal.in .r-rule.hold b{opacity:0;transition:none}
+.motion .reveal.in .rise.hold .w>span,.motion .reveal.in .big-h.hold .w>span,.motion .reveal.in .w-hero-title.hold .w>span{transform:translateY(105%);transition:none}
+.motion .reveal.in .w-tiles li.hold::before,.motion .reveal.in .panel.hold::before{transform:scaleY(0);transition:none}
+.motion .reveal.in .panel.hold .lead{clip-path:inset(0 100% 0 0);transition:none}
+.motion .reveal.in .band-line.hold{opacity:0;transform:translateY(14px);transition:none}
+
 </style>
 </head>
 <body>
@@ -880,15 +911,34 @@ addEventListener('scroll',()=>{const c=document.querySelector('.scroll-cue'); if
       if (k < 1) requestAnimationFrame(step);
     })(t0);
   }
+  /* 27 Nov (Neal): anything still below the fold when its section arrives waits until it is itself on screen */
+  const ANIM = '.r, .r-rule, .rise, .big-h, .w-hero-title, .w-tiles li, .panel, .band-line';
+  const eio = new IntersectionObserver(entries => {
+    let k = 0;
+    entries.filter(e => e.isIntersecting).forEach(e => {
+      const el = e.target; eio.unobserve(el);
+      el.style.setProperty('--d', (0.05 + 0.12 * k++).toFixed(2));
+      el.classList.remove('hold');
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  function hold(sec) {
+    if (reduce) return;
+    const lim = innerHeight * 0.88;
+    sec.querySelectorAll(ANIM).forEach(el => { if (el.getBoundingClientRect().top > lim) { el.classList.add('hold'); eio.observe(el); } });
+  }
   const io = new IntersectionObserver(entries => entries.forEach(e => {
     if (!e.isIntersecting) return;
-    e.target.classList.add('in'); io.unobserve(e.target);
-    e.target.querySelectorAll('[data-count]').forEach(el => setTimeout(() => count(el), 500));
+    e.target.classList.add('in'); io.unobserve(e.target); hold(e.target);
   }), { threshold: 0.25 });
+  /* 27 Nov: each figure counts up when it is itself fully on screen (the section can arrive while the figures are still below the fold) */
+  const cio = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target); setTimeout(() => count(e.target), 300);
+  }), { threshold: 1, rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('[data-count]').forEach(el => { if (!reduce) el.textContent = '0' + (el.dataset.suffix || ''); cio.observe(el); });
   /* sections with their own threshold (e.g. the Leading Self hero) wait until most of them is on screen */
   const late = new IntersectionObserver(entries => entries.forEach(e => {
     if (e.intersectionRatio < parseFloat(e.target.dataset.threshold)) return;
-    e.target.classList.add('in'); late.unobserve(e.target);
+    e.target.classList.add('in'); late.unobserve(e.target); hold(e.target);
   }), { threshold: [0.3, 0.45, 0.6, 0.75] });
   document.querySelectorAll('.reveal').forEach(s => (s.dataset.threshold ? late : io).observe(s));
   /* replaying moments (the Chrysalis wings): open each time they come into view, close again once out of view */
