@@ -470,7 +470,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
     <a href="3_Tracey_Jones_Specialist_Support.html" data-nav="spec">Specialist<br>support</a>
     <a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#leadership" data-nav="lead">Leadership &amp;<br>team development</a>
     <a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#work" data-nav="coach">Transformational<br>coaching</a>
-    <a href="#" data-nav="dl">Digital<br>learning</a>
+    <a href="7_Digital_Learning_PGP.html" data-nav="dl">Digital<br>learning</a>
     <a href="#" data-nav="ss">Success<br>stories</a>
     <a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#about" data-nav="about">About</a>
     <a href="#" data-nav="pod">Podcast</a>
@@ -623,7 +623,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
   </div>
   <nav class="f-col" aria-label="Explore"><p>EXPLORE</p><span class="f-div"></span><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#about">About Tracey</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#work">Work with Tracey</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#coaching">Transformational Coaching</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#leadership">Leadership &amp; Team Development</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#transition">Transition Support</a></nav>
   <nav class="f-col" aria-label="Specialist support"><p>SPECIALIST SUPPORT</p><span class="f-div"></span><a href="3_Tracey_Jones_Specialist_Support.html">Specialist Overview</a><a href="6_Specialist_UHNW.html">UHNW Individuals &amp; Families</a><a href="6_Specialist_Sport.html">Sport &amp; Elite Athletes</a><a href="6_Specialist_Politics.html">Politics &amp; Public Office</a><a href="6_Specialist_Military.html">Military &amp; Veterans</a><a href="6_Specialist_Maritime.html">Maritime &amp; Yacht Crew</a><a href="6_Specialist_Entertainment.html">Entertainment</a></nav>
-  <nav class="f-col" aria-label="Learning and insights"><p>LEARNING &amp; INSIGHTS</p><span class="f-div"></span><a href="#">Digital Learning</a><a href="#">Personal Growth Programme</a><a href="#">Success Stories</a><a href="#">Case Studies</a><a href="#">Podcast</a></nav>
+  <nav class="f-col" aria-label="Learning and insights"><p>LEARNING &amp; INSIGHTS</p><span class="f-div"></span><a href="7_Digital_Learning_PGP.html">Digital Learning</a><a href="7_Digital_Learning_PGP.html">Personal Growth Programme</a><a href="#">Success Stories</a><a href="#">Case Studies</a><a href="#">Podcast</a></nav>
   <nav class="f-col" aria-label="Support and contact"><p>SUPPORT &amp; CONTACT</p><span class="f-div"></span><a href="4_Tracey_Jones_Contact.html">Book a Conversation</a><a href="#">Log in / My Account</a><a href="#">My Courses</a><a href="#">Basket / Checkout</a><a href="#">Terms · Privacy · Cookies</a><a href="#">Refunds · Complaints</a></nav>
   <div class="f-base"><span>Tracey Jones Academy</span><span>Contact details and social links to be confirmed</span></div>
 </footer>
@@ -835,7 +835,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
         <div class="tj-row"><button class="btn btn-gold" type="submit">LOG IN&nbsp;&nbsp;›</button></div>
         <p class="tj-msg" hidden></p>
       </form>
-      <div class="tj-email"><span>New here?</span><a href="#" class="is-soon" aria-disabled="true">EXPLORE MY PERSONAL GROWTH PROGRAMME ›</a></div>
+      <div class="tj-email"><span>New here?</span><a href="7_Digital_Learning_PGP.html">EXPLORE MY PERSONAL GROWTH PROGRAMME ›</a></div>
       <p class="tj-note">Preview only. On the live site this signs you in to My Courses (your existing Tracey Jones Academy account).</p>
     </div>`);
   const lf = login.querySelector('form'), lmsg = lf.querySelector('.tj-msg');
@@ -843,7 +843,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
     lmsg.innerHTML = 'In the live site you would now be signed in and taken to <strong>My Courses</strong>. <em>(Preview only: no account was checked.)</em>'; lf.querySelector('[name=pass]').value = ''; });
   login.querySelector('[data-forgot]').addEventListener('click', () => { lmsg.hidden = false;
     lmsg.innerHTML = 'In the live site this sends a password reset link to your email. <em>(Preview only.)</em>'; });
-  login.querySelector('.is-soon').addEventListener('click', e => e.preventDefault());
+  const lsoon = login.querySelector('.is-soon'); if (lsoon) lsoon.addEventListener('click', e => e.preventDefault());
   document.querySelectorAll('a.login').forEach(a => { a.dataset.modal = 'login'; a.addEventListener('click', e => { e.preventDefault(); open(login); }); });
 })();
 
