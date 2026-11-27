@@ -639,22 +639,22 @@ body.tj-lock{overflow:hidden}
 
 /* 27 Nov (Neal): livelier buttons. On hover a navy fill sweeps in from the left (white text), the button lifts a touch
    and the arrow steps forward; a fine gold edge keeps it defined on dark sections. Outline buttons fill the same way. */
-.btn{background-repeat:no-repeat;background-position:left center;background-size:0% 100%;transition:background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease),filter .3s,transform .3s}
-.btn.btn-gold,.btn.btn-gold-bright,.btn.btn-outline-dark{background-image:linear-gradient(var(--plan-navy),var(--plan-navy));background-repeat:no-repeat;background-position:left center;background-size:0% 100%}
-.btn.btn-outline-light{background-image:linear-gradient(var(--pearl),var(--pearl));background-repeat:no-repeat;background-position:left center;background-size:0% 100%}
+.btn{background-repeat:no-repeat;background-position:left center;background-size:0% 100%;transition:background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease),filter .3s,transform .3s}
+.btn.btn-gold,.btn.btn-gold-bright{background-image:linear-gradient(var(--plan-navy),var(--plan-navy));background-repeat:no-repeat;background-position:left center;background-size:0% 100%}
+.btn.btn-outline-light,.btn.btn-outline-dark{background-image:none}  /* outline buttons: a simple fade, never a second wipe beside the gold one */
 .btn:hover,.btn:focus-visible{background-size:100% 100%;filter:none;translate:0 -2px;box-shadow:0 10px 22px rgba(20,30,48,.22)}
 .btn.btn-gold:hover,.btn.btn-gold-bright:hover,.btn.btn-gold:focus-visible,.btn.btn-gold-bright:focus-visible{color:var(--white);box-shadow:inset 0 0 0 1px var(--plan-gold),0 10px 22px rgba(20,30,48,.22)}
-.btn.btn-outline-dark:hover,.btn.btn-outline-dark:focus-visible{color:var(--white)}
-.btn.btn-outline-light:hover,.btn.btn-outline-light:focus-visible{color:var(--plan-navy)}
+.btn.btn-outline-dark:hover,.btn.btn-outline-dark:focus-visible{background-color:var(--plan-navy);color:var(--white);translate:none;box-shadow:none}
+.btn.btn-outline-light:hover,.btn.btn-outline-light:focus-visible{background-color:var(--white);color:var(--plan-navy);translate:none;box-shadow:none}
 .btn:active{translate:0 0;box-shadow:none}
 .btn.is-soon:hover{translate:none;box-shadow:none}
 .btn-arr{display:inline-block;transition:transform .35s var(--ease)}
-.btn:hover .btn-arr,.btn:focus-visible .btn-arr{transform:translateX(4px)}
+.btn-gold:hover .btn-arr,.btn-gold-bright:hover .btn-arr{transform:translateX(4px)}
 /* keep the entrance timings where buttons also reveal */
-.motion .reveal.in .btn.r{transition:opacity 1s var(--ease) calc(var(--d,0) * 1s),transform 1s var(--ease) calc(var(--d,0) * 1s),background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
-.motion .alchemy.reveal.in .btn.r{transition:-webkit-mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
-.motion.go .hero-buttons .btn,.motion.go .hero-buttons .btn:nth-child(1){transition:opacity .9s var(--ease) 4.05s,transform .9s var(--ease) 4.05s,filter .3s,background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
-.motion.go .hero-buttons .btn:nth-child(2){transition:opacity .9s var(--ease) 4.2s,transform .9s var(--ease) 4.2s,filter .3s,background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion .reveal.in .btn.r{transition:opacity 1s var(--ease) calc(var(--d,0) * 1s),transform 1s var(--ease) calc(var(--d,0) * 1s),background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion .alchemy.reveal.in .btn.r{transition:-webkit-mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion.go .hero-buttons .btn,.motion.go .hero-buttons .btn:nth-child(1){transition:opacity .9s var(--ease) 4.05s,transform .9s var(--ease) 4.05s,filter .3s,background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion.go .hero-buttons .btn:nth-child(2){transition:opacity .9s var(--ease) 4.2s,transform .9s var(--ease) 4.2s,filter .3s,background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
 @media (prefers-reduced-motion:reduce){.btn,.btn-arr{transition:color .2s,background-size .01s!important}.btn:hover{translate:none}.btn:hover .btn-arr{transform:none}}
 
 /* 27 Nov (Neal): Her Journey rebalanced. Shorter line length on the left, the pair sits closer, the panel centres against the text. */
@@ -691,7 +691,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
   </nav>
   <div class="nav-actions">
     <a class="btn btn-gold btn-small" href="4_Tracey_Jones_Contact.html">BOOK A CONVERSATION</a>
-    <a class="login" href="#">Log in</a>
+    <a class="login" href="#">Login</a>
   </div>
 </header>
 
@@ -704,7 +704,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
         <p class="eyebrow eyebrow-gold r">CONTACT</p>
         <h1 id="ct-title" class="ct-title r">Begin with a conversation.</h1>
         <p class="ct-lead r">Every enquiry is handled personally and in complete confidence.</p>
-        <div class="ct-email r"><p>Prefer email? Write to Tracey directly and she will reply personally.</p><a class="btn btn-gold" href="mailto:support@traceyjones.academy">EMAIL TRACEY&nbsp;&nbsp;›</a><p class="ct-details"><a href="mailto:support@traceyjones.academy">support@traceyjones.academy</a> &nbsp;·&nbsp; <span class="ph" title="To be supplied">[phone]</span></p></div>
+        <div class="ct-email r"><p>Prefer email? Write to Tracey directly and she will reply personally.</p><a class="btn btn-gold" href="mailto:support@traceyjones.academy">EMAIL TRACEY</a><p class="ct-details"><a href="mailto:support@traceyjones.academy">support@traceyjones.academy</a> &nbsp;·&nbsp; <span class="ph" title="To be supplied">[phone]</span></p></div>
       </div>
     </div>
     <div class="ct-right">
@@ -724,8 +724,8 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
         <label class="sr" for="f-msg">How can I help?</label><textarea id="f-msg" name="message" rows="4" placeholder="How can I help?"></textarea>
         <label class="ct-conf"><input type="checkbox" name="confidential"> Please treat this as a confidential enquiry</label>
         <div class="ct-actions">
-          <button class="btn btn-gold" type="submit">SEND ENQUIRY&nbsp;&nbsp;›</button>
-          <a class="btn btn-outline-dark" href="#book">BOOK A TIME&nbsp;&nbsp;›</a>
+          <button class="btn btn-gold" type="submit">SEND ENQUIRY</button>
+          <a class="btn btn-outline-dark" href="#book">BOOK A TIME</a>
         </div>
         <p class="ct-thanks" role="status" hidden>Thank you. Your enquiry has been received and will be handled personally and in confidence. <em>(Preview only: nothing has been sent.)</em></p>
       </form>
@@ -759,7 +759,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
   <nav class="f-col" aria-label="Explore"><p>EXPLORE</p><span class="f-div"></span><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#about">About Tracey</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#work">Work with Tracey</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#coaching">Transformational Coaching</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#leadership">Leadership &amp; Team Development</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#transition">Transition Support</a></nav>
   <nav class="f-col" aria-label="Specialist support"><p>SPECIALIST SUPPORT</p><span class="f-div"></span><a href="3_Tracey_Jones_Specialist_Support.html">Specialist Overview</a><a href="6_Specialist_UHNW.html">UHNW Individuals &amp; Families</a><a href="6_Specialist_Sport.html">Sport &amp; Elite Athletes</a><a href="6_Specialist_Politics.html">Politics &amp; Public Office</a><a href="6_Specialist_Military.html">Military &amp; Veterans</a><a href="6_Specialist_Maritime.html">Maritime &amp; Yacht Crew</a><a href="6_Specialist_Entertainment.html">Entertainment</a></nav>
   <nav class="f-col" aria-label="Learning and insights"><p>LEARNING &amp; INSIGHTS</p><span class="f-div"></span><a href="7_Digital_Learning_PGP.html">Digital Learning</a><a href="7_Digital_Learning_PGP.html">Personal Growth Programme</a><a href="#">Success Stories</a><a href="#">Case Studies</a><a href="#">Podcast</a></nav>
-  <nav class="f-col" aria-label="Support and contact"><p>SUPPORT &amp; CONTACT</p><span class="f-div"></span><a href="4_Tracey_Jones_Contact.html">Book a Conversation</a><a href="#">Log in / My Account</a><a href="#">My Courses</a><a href="#">Basket / Checkout</a><a href="#">Terms · Privacy · Cookies</a><a href="#">Refunds · Complaints</a></nav>
+  <nav class="f-col" aria-label="Support and contact"><p>SUPPORT &amp; CONTACT</p><span class="f-div"></span><a href="4_Tracey_Jones_Contact.html">Book a Conversation</a><a href="#">Login / My Account</a><a href="#">My Courses</a><a href="#">Basket / Checkout</a><a href="#">Terms · Privacy · Cookies</a><a href="#">Refunds · Complaints</a></nav>
   <div class="f-base"><span>Tracey Jones Academy</span><span>Contact details and social links to be confirmed</span></div>
 </footer>
 
@@ -775,6 +775,11 @@ addEventListener('scroll',()=>{const c=document.querySelector('.scroll-cue'); if
 /* Tracey Jones Academy · shared scroll motion for About and Work with Tracey (draft, 17 Nov 2026)
    Each section reveals once as it arrives; image bands open their horizon as they pass; figures count up once. */
 (function () {
+  /* Keep the continuous SVG ring at its original fine 1px stroke without non-scaling dash artefacts. */
+  const ringSize = new ResizeObserver(entries => entries.forEach(({target,contentRect}) => {
+    if (contentRect.width) target.style.setProperty('--hp-stroke', 100 / contentRect.width);
+  }));
+  document.querySelectorAll('.hp-ring').forEach(ring => ringSize.observe(ring));
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.body.classList.add('motion');
   document.querySelectorAll('.reveal').forEach(sec => {
@@ -878,7 +883,7 @@ const out=document.querySelector('.ct-booked');document.querySelectorAll('.ct-sl
   const interests = ['1:1 coaching', 'Team development', 'Specialist support', 'PGP', 'Speaking'];
 
   /* footer "Log in / My Account" and "My Courses" open the log-in pop-up */
-  document.querySelectorAll('.site-footer a[href="#"]').forEach(a => { if (/^(Log in|My Courses)/i.test(a.textContent.trim())) a.classList.add('login'); });
+  document.querySelectorAll('.site-footer a[href="#"]').forEach(a => { if (/^(Log ?in|My Courses)/i.test(a.textContent.trim())) a.classList.add('login'); });
 
   /* ---------- 1. coming soon ---------- */
   const tip = document.createElement('span'); tip.className = 'soon-tip'; tip.textContent = 'Coming soon'; document.body.appendChild(tip);
@@ -918,7 +923,7 @@ const out=document.querySelector('.ct-booked');document.querySelectorAll('.ct-sl
         <fieldset class="tj-interest"><legend>I’m interested in:</legend>${interests.map(i => `<label><input type="checkbox" value="${i}"> ${i}</label>`).join('')}</fieldset>
         <textarea rows="3" placeholder="How can I help?" aria-label="How can I help?"></textarea>
         <label class="tj-check"><input type="checkbox"> Please treat this as a confidential enquiry</label>
-        <div class="tj-row"><button class="btn btn-gold" type="submit">SEND ENQUIRY&nbsp;&nbsp;›</button><button class="tj-link" type="button" data-go="time">or book a time ›</button></div>
+        <div class="tj-row"><button class="btn btn-gold" type="submit">SEND ENQUIRY</button><button class="tj-link" type="button" data-go="time">or book a time ›</button></div>
         <p class="tj-msg" hidden>Thank you. Your enquiry has been received and will be handled personally and in confidence. <em>(Preview only: nothing has been sent.)</em></p>
       </form>
       <div class="tj-email"><span>Prefer email? Write to Tracey directly.</span><a href="mailto:${EMAIL}">EMAIL TRACEY ›</a></div>
@@ -955,14 +960,14 @@ const out=document.querySelector('.ct-booked');document.querySelectorAll('.ct-sl
 
   /* ---------- 3. log-in pop-up ---------- */
   const login = modal('tj-login', `
-    <div class="tj-head"><p class="eyebrow">LOG IN</p><h2 id="tj-login-t">Welcome back.</h2>
+    <div class="tj-head"><p class="eyebrow">LOGIN</p><h2 id="tj-login-t">Welcome back.</h2>
       <p>Log in to continue your programme and see your courses.</p></div>
     <div class="tj-body">
       <form class="tj-form" novalidate>
         <input name="user" type="email" autocomplete="username" placeholder="Email or username" aria-label="Email or username" required>
         <input name="pass" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required>
         <div class="tj-row" style="justify-content:space-between"><label class="tj-check"><input type="checkbox"> Remember me</label><button class="tj-link" type="button" data-forgot>Forgot your password?</button></div>
-        <div class="tj-row"><button class="btn btn-gold" type="submit">LOG IN&nbsp;&nbsp;›</button></div>
+        <div class="tj-row"><button class="btn btn-gold" type="submit">LOGIN</button></div>
         <p class="tj-msg" hidden></p>
       </form>
       <div class="tj-email"><span>New here?</span><a href="7_Digital_Learning_PGP.html">EXPLORE MY PERSONAL GROWTH PROGRAMME ›</a></div>
@@ -1002,7 +1007,7 @@ const out=document.querySelector('.ct-booked');document.querySelectorAll('.ct-sl
   const book = head.querySelector('.nav-actions .btn'), login = head.querySelector('.nav-actions .login');
   if (book) { const b = document.createElement('a'); b.href = '#'; b.className = 'btn btn-gold'; b.textContent = book.textContent.trim() + '  ›';
     b.addEventListener('click', e => { e.preventDefault(); toggle(false); book.click(); }); foot.appendChild(b); }
-  if (login) { const l = document.createElement('a'); l.href = '#'; l.className = 'tj-mlogin'; l.textContent = 'Log in';
+  if (login) { const l = document.createElement('a'); l.href = '#'; l.className = 'tj-mlogin'; l.textContent = 'Login';
     l.addEventListener('click', e => { e.preventDefault(); toggle(false); login.click(); }); foot.appendChild(l); }
   menu.appendChild(foot);
   document.body.appendChild(menu);

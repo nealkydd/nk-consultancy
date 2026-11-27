@@ -525,22 +525,22 @@ body.tj-lock{overflow:hidden}
 
 /* 27 Nov (Neal): livelier buttons. On hover a navy fill sweeps in from the left (white text), the button lifts a touch
    and the arrow steps forward; a fine gold edge keeps it defined on dark sections. Outline buttons fill the same way. */
-.btn{background-repeat:no-repeat;background-position:left center;background-size:0% 100%;transition:background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease),filter .3s,transform .3s}
-.btn.btn-gold,.btn.btn-gold-bright,.btn.btn-outline-dark{background-image:linear-gradient(var(--plan-navy),var(--plan-navy));background-repeat:no-repeat;background-position:left center;background-size:0% 100%}
-.btn.btn-outline-light{background-image:linear-gradient(var(--pearl),var(--pearl));background-repeat:no-repeat;background-position:left center;background-size:0% 100%}
+.btn{background-repeat:no-repeat;background-position:left center;background-size:0% 100%;transition:background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease),filter .3s,transform .3s}
+.btn.btn-gold,.btn.btn-gold-bright{background-image:linear-gradient(var(--plan-navy),var(--plan-navy));background-repeat:no-repeat;background-position:left center;background-size:0% 100%}
+.btn.btn-outline-light,.btn.btn-outline-dark{background-image:none}  /* outline buttons: a simple fade, never a second wipe beside the gold one */
 .btn:hover,.btn:focus-visible{background-size:100% 100%;filter:none;translate:0 -2px;box-shadow:0 10px 22px rgba(20,30,48,.22)}
 .btn.btn-gold:hover,.btn.btn-gold-bright:hover,.btn.btn-gold:focus-visible,.btn.btn-gold-bright:focus-visible{color:var(--white);box-shadow:inset 0 0 0 1px var(--plan-gold),0 10px 22px rgba(20,30,48,.22)}
-.btn.btn-outline-dark:hover,.btn.btn-outline-dark:focus-visible{color:var(--white)}
-.btn.btn-outline-light:hover,.btn.btn-outline-light:focus-visible{color:var(--plan-navy)}
+.btn.btn-outline-dark:hover,.btn.btn-outline-dark:focus-visible{background-color:var(--plan-navy);color:var(--white);translate:none;box-shadow:none}
+.btn.btn-outline-light:hover,.btn.btn-outline-light:focus-visible{background-color:var(--white);color:var(--plan-navy);translate:none;box-shadow:none}
 .btn:active{translate:0 0;box-shadow:none}
 .btn.is-soon:hover{translate:none;box-shadow:none}
 .btn-arr{display:inline-block;transition:transform .35s var(--ease)}
-.btn:hover .btn-arr,.btn:focus-visible .btn-arr{transform:translateX(4px)}
+.btn-gold:hover .btn-arr,.btn-gold-bright:hover .btn-arr{transform:translateX(4px)}
 /* keep the entrance timings where buttons also reveal */
-.motion .reveal.in .btn.r{transition:opacity 1s var(--ease) calc(var(--d,0) * 1s),transform 1s var(--ease) calc(var(--d,0) * 1s),background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
-.motion .alchemy.reveal.in .btn.r{transition:-webkit-mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
-.motion.go .hero-buttons .btn,.motion.go .hero-buttons .btn:nth-child(1){transition:opacity .9s var(--ease) 4.05s,transform .9s var(--ease) 4.05s,filter .3s,background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
-.motion.go .hero-buttons .btn:nth-child(2){transition:opacity .9s var(--ease) 4.2s,transform .9s var(--ease) 4.2s,filter .3s,background-size .5s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion .reveal.in .btn.r{transition:opacity 1s var(--ease) calc(var(--d,0) * 1s),transform 1s var(--ease) calc(var(--d,0) * 1s),background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion .alchemy.reveal.in .btn.r{transition:-webkit-mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion.go .hero-buttons .btn,.motion.go .hero-buttons .btn:nth-child(1){transition:opacity .9s var(--ease) 4.05s,transform .9s var(--ease) 4.05s,filter .3s,background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
+.motion.go .hero-buttons .btn:nth-child(2){transition:opacity .9s var(--ease) 4.2s,transform .9s var(--ease) 4.2s,filter .3s,background-size .5s var(--ease),background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),translate .35s var(--ease)}
 @media (prefers-reduced-motion:reduce){.btn,.btn-arr{transition:color .2s,background-size .01s!important}.btn:hover{translate:none}.btn:hover .btn-arr{transform:none}}
 
 /* 27 Nov (Neal): Her Journey rebalanced. Shorter line length on the left, the pair sits closer, the panel centres against the text. */
@@ -579,7 +579,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
   </nav>
   <div class="nav-actions">
     <a class="btn btn-gold btn-small" href="4_Tracey_Jones_Contact.html">BOOK A CONVERSATION</a>
-    <a class="login" href="#">Log in</a>
+    <a class="login" href="#">Login</a>
   </div>
 </header>
 
@@ -600,8 +600,8 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
         <div class="rule hero-rule" aria-hidden="true"><i></i><b></b><i></i></div>
         <p class="hero-sub">Inner clarity for outer performance.</p>
         <div class="hero-buttons">
-          <a class="btn btn-gold btn-2l" href="4_Tracey_Jones_Contact.html">BOOK A CONFIDENTIAL<br>CONVERSATION&nbsp;&nbsp;›</a>
-          <a class="btn btn-outline-light" href="3_Tracey_Jones_Specialist_Support.html">EXPLORE SUPPORT&nbsp;&nbsp;›</a>
+          <a class="btn btn-gold btn-2l" href="4_Tracey_Jones_Contact.html">BOOK A CONFIDENTIAL<br>CONVERSATION</a>
+          <a class="btn btn-outline-light" href="3_Tracey_Jones_Specialist_Support.html">EXPLORE SUPPORT</a>
         </div>
       </div>
       <span class="scroll-cue" data-after="4.8" aria-hidden="true"></span>
@@ -617,7 +617,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
       <div class="rule r-rule" aria-hidden="true"><i></i><b></b><i></i></div>
       <p class="body r">The way we think, the stories we tell ourselves, the beliefs we hold, and the language we use shape every decision we make, every relationship we build, and every outcome we create.</p>
       <p class="body bronze r">Tracey is a highly respected mind management coach and trusted confidante at some of the highest levels of media, politics, sports, business and government.</p>
-      <a class="btn btn-gold r" href="2_Tracey_Jones_About_and_Work_with_Tracey.html#about">ABOUT TRACEY&nbsp;&nbsp;›</a>
+      <a class="btn btn-gold r" href="2_Tracey_Jones_About_and_Work_with_Tracey.html#about">ABOUT TRACEY</a>
     </div>
   </section>
 
@@ -645,7 +645,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
     <div class="rule r-rule centre gold-v2" aria-hidden="true"><i></i><b></b><i></i></div>
     <p class="alchemy-body r">The words we choose reveal our beliefs, shape our emotional patterns and influence every decision we make. When people learn to hear their own language differently, they begin to understand themselves differently.</p>
     <p class="alchemy-close r">From that place, everything changes.</p>
-    <a class="btn btn-gold-bright btn-large r" href="4_Tracey_Jones_Contact.html">BOOK A CONVERSATION&nbsp;&nbsp;›</a>
+    <a class="btn btn-gold-bright btn-large r" href="4_Tracey_Jones_Contact.html">BOOK A CONVERSATION</a>
   </section>
 
   <!-- 03d LEADING SELF · slide 7 · motion ends here -->
@@ -676,7 +676,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
       <h2 id="who-title" class="who-title r">Many of my clients are highly successful on the outside, yet carry significant responsibility, visibility and emotional load behind the scenes.</h2>
       <div class="rule r-rule" aria-hidden="true"><i></i><b></b><i></i></div>
       <p class="who-body r">My role is to create a trusted, confidential space where they can think clearly, reflect deeply and reconnect with who they are beneath the role.</p>
-      <a class="btn btn-gold r" href="3_Tracey_Jones_Specialist_Support.html">EXPLORE SPECIALIST SUPPORT&nbsp;&nbsp;›</a>
+      <a class="btn btn-gold r" href="3_Tracey_Jones_Specialist_Support.html">EXPLORE SPECIALIST SUPPORT</a>
     </div>
     <div class="gains">
       <p class="eyebrow eyebrow-gold r">WHAT CLIENTS GAIN</p>
@@ -705,7 +705,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
       <div class="bcol bcol-c"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20v-1.2A4.8 4.8 0 0 1 7.3 14h3.4a4.8 4.8 0 0 1 4.8 4.8V20"/><path d="M15.5 4.7a3.5 3.5 0 0 1 0 6.6"/><path d="M18.5 14.2a4.8 4.8 0 0 1 3 4.6V20"/></svg></span><h3>Teams that hold steady</h3><p>Tracey places equal emphasis on the dynamics within teams. By helping people recognise their pressure points and triggers, she equips them to coach themselves, coach others and stay steady through challenge, creating teams that are high-performing, grounded, connected and psychologically safe.</p></div>
       <div class="bcol bcol-r"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.5 4 5.6 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.6-4-9s1.4-6.5 4-9z"/></svg></span><h3>On the world stage</h3><p>A sought-after international keynote speaker, Tracey brings more than expertise to the stage. She shares her own journey of change, the challenges that tested her and the lessons that shaped her practice, showing audiences around the world how the power of the mind transforms personal and professional success. Through Chrysalis Mindset she continues to support educators and school leaders to thrive, the work where her own journey began.</p></div>
     </div>
-    <a class="btn btn-gold beyond-btn btn-2l" href="4_Tracey_Jones_Contact.html">BOOK A CONFIDENTIAL<br>CONVERSATION&nbsp;&nbsp;›</a>
+    <a class="btn btn-gold beyond-btn btn-2l" href="4_Tracey_Jones_Contact.html">BOOK A CONFIDENTIAL<br>CONVERSATION</a>
   </section>
 </main>
 
@@ -720,7 +720,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
   <nav class="f-col" aria-label="Explore"><p>EXPLORE</p><span class="f-div"></span><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#about">About Tracey</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#work">Work with Tracey</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#coaching">Transformational Coaching</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#leadership">Leadership &amp; Team Development</a><a href="2_Tracey_Jones_About_and_Work_with_Tracey.html#transition">Transition Support</a></nav>
   <nav class="f-col" aria-label="Specialist support"><p>SPECIALIST SUPPORT</p><span class="f-div"></span><a href="3_Tracey_Jones_Specialist_Support.html">Specialist Overview</a><a href="6_Specialist_UHNW.html">UHNW Individuals &amp; Families</a><a href="6_Specialist_Sport.html">Sport &amp; Elite Athletes</a><a href="6_Specialist_Politics.html">Politics &amp; Public Office</a><a href="6_Specialist_Military.html">Military &amp; Veterans</a><a href="6_Specialist_Maritime.html">Maritime &amp; Yacht Crew</a><a href="6_Specialist_Entertainment.html">Entertainment</a></nav>
   <nav class="f-col" aria-label="Learning and insights"><p>LEARNING &amp; INSIGHTS</p><span class="f-div"></span><a href="7_Digital_Learning_PGP.html">Digital Learning</a><a href="7_Digital_Learning_PGP.html">Personal Growth Programme</a><a href="#">Success Stories</a><a href="#">Case Studies</a><a href="#">Podcast</a></nav>
-  <nav class="f-col" aria-label="Support and contact"><p>SUPPORT &amp; CONTACT</p><span class="f-div"></span><a href="4_Tracey_Jones_Contact.html">Book a Conversation</a><a href="#">Log in / My Account</a><a href="#">My Courses</a><a href="#">Basket / Checkout</a><a href="#">Terms · Privacy · Cookies</a><a href="#">Refunds · Complaints</a></nav>
+  <nav class="f-col" aria-label="Support and contact"><p>SUPPORT &amp; CONTACT</p><span class="f-div"></span><a href="4_Tracey_Jones_Contact.html">Book a Conversation</a><a href="#">Login / My Account</a><a href="#">My Courses</a><a href="#">Basket / Checkout</a><a href="#">Terms · Privacy · Cookies</a><a href="#">Refunds · Complaints</a></nav>
   <div class="f-base"><span>Tracey Jones Academy</span><span>Contact details and social links to be confirmed</span></div>
 </footer>
 
@@ -844,7 +844,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
   const interests = ['1:1 coaching', 'Team development', 'Specialist support', 'PGP', 'Speaking'];
 
   /* footer "Log in / My Account" and "My Courses" open the log-in pop-up */
-  document.querySelectorAll('.site-footer a[href="#"]').forEach(a => { if (/^(Log in|My Courses)/i.test(a.textContent.trim())) a.classList.add('login'); });
+  document.querySelectorAll('.site-footer a[href="#"]').forEach(a => { if (/^(Log ?in|My Courses)/i.test(a.textContent.trim())) a.classList.add('login'); });
 
   /* ---------- 1. coming soon ---------- */
   const tip = document.createElement('span'); tip.className = 'soon-tip'; tip.textContent = 'Coming soon'; document.body.appendChild(tip);
@@ -884,7 +884,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
         <fieldset class="tj-interest"><legend>I’m interested in:</legend>${interests.map(i => `<label><input type="checkbox" value="${i}"> ${i}</label>`).join('')}</fieldset>
         <textarea rows="3" placeholder="How can I help?" aria-label="How can I help?"></textarea>
         <label class="tj-check"><input type="checkbox"> Please treat this as a confidential enquiry</label>
-        <div class="tj-row"><button class="btn btn-gold" type="submit">SEND ENQUIRY&nbsp;&nbsp;›</button><button class="tj-link" type="button" data-go="time">or book a time ›</button></div>
+        <div class="tj-row"><button class="btn btn-gold" type="submit">SEND ENQUIRY</button><button class="tj-link" type="button" data-go="time">or book a time ›</button></div>
         <p class="tj-msg" hidden>Thank you. Your enquiry has been received and will be handled personally and in confidence. <em>(Preview only: nothing has been sent.)</em></p>
       </form>
       <div class="tj-email"><span>Prefer email? Write to Tracey directly.</span><a href="mailto:${EMAIL}">EMAIL TRACEY ›</a></div>
@@ -921,14 +921,14 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
 
   /* ---------- 3. log-in pop-up ---------- */
   const login = modal('tj-login', `
-    <div class="tj-head"><p class="eyebrow">LOG IN</p><h2 id="tj-login-t">Welcome back.</h2>
+    <div class="tj-head"><p class="eyebrow">LOGIN</p><h2 id="tj-login-t">Welcome back.</h2>
       <p>Log in to continue your programme and see your courses.</p></div>
     <div class="tj-body">
       <form class="tj-form" novalidate>
         <input name="user" type="email" autocomplete="username" placeholder="Email or username" aria-label="Email or username" required>
         <input name="pass" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required>
         <div class="tj-row" style="justify-content:space-between"><label class="tj-check"><input type="checkbox"> Remember me</label><button class="tj-link" type="button" data-forgot>Forgot your password?</button></div>
-        <div class="tj-row"><button class="btn btn-gold" type="submit">LOG IN&nbsp;&nbsp;›</button></div>
+        <div class="tj-row"><button class="btn btn-gold" type="submit">LOGIN</button></div>
         <p class="tj-msg" hidden></p>
       </form>
       <div class="tj-email"><span>New here?</span><a href="7_Digital_Learning_PGP.html">EXPLORE MY PERSONAL GROWTH PROGRAMME ›</a></div>
@@ -968,7 +968,7 @@ if(h===H){try{localStorage.setItem('tja-ok',H)}catch(_){}r.classList.remove('tja
   const book = head.querySelector('.nav-actions .btn'), login = head.querySelector('.nav-actions .login');
   if (book) { const b = document.createElement('a'); b.href = '#'; b.className = 'btn btn-gold'; b.textContent = book.textContent.trim() + '  ›';
     b.addEventListener('click', e => { e.preventDefault(); toggle(false); book.click(); }); foot.appendChild(b); }
-  if (login) { const l = document.createElement('a'); l.href = '#'; l.className = 'tj-mlogin'; l.textContent = 'Log in';
+  if (login) { const l = document.createElement('a'); l.href = '#'; l.className = 'tj-mlogin'; l.textContent = 'Login';
     l.addEventListener('click', e => { e.preventDefault(); toggle(false); login.click(); }); foot.appendChild(l); }
   menu.appendChild(foot);
   document.body.appendChild(menu);
