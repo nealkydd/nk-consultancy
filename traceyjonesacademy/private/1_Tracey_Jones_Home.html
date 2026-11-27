@@ -489,6 +489,23 @@ body.tj-lock{overflow:hidden}
 .pgp-two ul{grid-template-columns:repeat(2,1fr);max-width:1040px}
 @media (max-width:700px){.pgp-two ul{grid-template-columns:1fr}.pgp-lead{font-size:20px}}
 
+/* 27 Nov · Home, Language Alchemy (Neal): bluer, less black; the camera starts close on the gold seam,
+   pulls back to the full bowl, and the words wipe in as the picture settles. */
+.alchemy .bg-bowl{filter:brightness(.8) contrast(1.06) saturate(1.15)}
+.alchemy .bowl-quiet{background:radial-gradient(ellipse 62% 58% at 50% 45%,rgba(16,36,74,.5) 0%,rgba(16,36,74,.26) 60%,rgba(16,36,74,0) 100%)}
+.alchemy .bowl-quiet::after{content:"";position:absolute;inset:0;background:rgba(30,64,130,.13);mix-blend-mode:screen}
+.alchemy{--gx:36%;--gy:74%}
+.motion .alchemy .bg-bowl{opacity:0;transform-origin:var(--gx) var(--gy);transform:translate(calc(50% - var(--gx)),calc(50% - var(--gy))) scale(2.2);filter:brightness(1.05) contrast(1.06) saturate(1.4) blur(7px)}
+.motion .alchemy.in .bg-bowl{opacity:1;transform:none;filter:brightness(.8) contrast(1.06) saturate(1.15);transition:opacity 1s var(--ease-soft) .15s,filter 1.6s var(--ease-soft) .25s,transform 3.2s cubic-bezier(.6,0,.2,1) 1.5s}
+.motion .alchemy .bowl-quiet{opacity:0}
+.motion .alchemy.in .bowl-quiet{opacity:1;transition:opacity 2s var(--ease-soft) 1.8s}
+.motion .alchemy.reveal .r{opacity:1;transform:none;-webkit-mask-image:linear-gradient(90deg,#000 40%,transparent 60%);mask-image:linear-gradient(90deg,#000 40%,transparent 60%);-webkit-mask-size:260% 100%;mask-size:260% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0}
+.motion .alchemy.reveal.in .r{-webkit-mask-position:0 0;mask-position:0 0;transition:-webkit-mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s)}
+.alchemy .eyebrow{--wd:1.9s}.alchemy-title .line:first-child{--wd:2.15s}.alchemy-title .line:last-child{--wd:2.45s}
+.alchemy .r-rule{--d:2.85}.alchemy-body{--wd:3s}.alchemy-close{--wd:3.4s}.alchemy .btn{--wd:3.7s}
+@media (max-width:700px){.alchemy{--gx:58%;--gy:72%}}
+@media (prefers-reduced-motion:reduce){.motion .alchemy .r{-webkit-mask-image:none!important;mask-image:none!important}.motion .alchemy .bowl-quiet{opacity:1!important}}
+
 </style>
 </head>
 <body class="is-loading">

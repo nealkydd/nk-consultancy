@@ -602,6 +602,33 @@ html.motion .sx-hero:not(.sx-anim) .sx-img,html.motion .sx-hero:not(.sx-anim) .s
 /* 26 Nov: Senior leaders, navy panel on the left (Neal). Phones keep the words first. */
 @media (min-width:1001px){.sx-body.sx-panel-left{grid-template-columns:.9fr 1.1fr}.sx-body.sx-panel-left .sx-panel{order:-1}}
 
+/* 27 Nov · Sport: race cars full width and full height, motion-blur cinema wipe right to left with the cars (Neal).
+   Words sit over the dark sky (top) and the wet track (bottom) so both cars stay clear. Tennis streak rules above kept. */
+.fx-wipe{max-height:none;align-items:stretch}
+.fx-wipe .sx-copy{max-width:none;padding:10vh 120px 15vh;gap:20px}
+.fx-wipe .sx-title{font-size:48px;max-width:900px}
+.fx-wipe .sx-sub{margin-top:auto;max-width:500px}
+.fx-wipe .sx-shade{background:linear-gradient(180deg,rgba(14,22,36,.5) 0%,rgba(14,22,36,.18) 22%,rgba(14,22,36,0) 36%,rgba(14,22,36,0) 66%,rgba(14,22,36,.62) 100%),linear-gradient(90deg,rgba(31,42,60,.32) 0%,rgba(31,42,60,0) 42%)}
+.fx-wipe.sx-anim .sx-img{clip-path:inset(0 0 0 100%);transform:translateX(6%);filter:blur(9px) brightness(1.12)}
+.fx-wipe.sx-anim.sx-go .sx-img{clip-path:inset(0 0 0 0);transform:none;filter:none;transition:clip-path 1.4s cubic-bezier(.65,0,.25,1),transform 1.4s cubic-bezier(.65,0,.25,1),filter 1.3s cubic-bezier(.3,.6,.2,1) .45s}
+.fx-wipe .sx-fx::before,.fx-wipe .sx-fx::after{content:"";position:absolute;top:0;bottom:0;left:0;width:30%;opacity:0;transform:translateX(303%)}
+.fx-wipe .sx-fx::before{background:linear-gradient(90deg,rgba(246,243,238,0) 40%,rgba(227,191,122,.5) 50%,rgba(246,243,238,.22) 58%,rgba(246,243,238,.06) 80%,rgba(246,243,238,0));filter:blur(10px)}
+.fx-wipe .sx-fx::after{background:linear-gradient(90deg,transparent calc(50% - 1px),rgba(227,191,122,.75) calc(50% - 1px),rgba(227,191,122,.75) calc(50% + 1px),transparent calc(50% + 1px))}
+.fx-wipe.sx-anim.sx-go .sx-fx::before,.fx-wipe.sx-anim.sx-go .sx-fx::after{animation:sxWipeMove 1.4s cubic-bezier(.65,0,.25,1) both,sxWipeFade 1.4s linear both}
+@keyframes sxWipeMove{from{transform:translateX(303%)}to{transform:translateX(-50%)}}
+@keyframes sxWipeFade{0%{opacity:0}10%{opacity:1}82%{opacity:1}100%{opacity:0}}
+/* desktop: the whole picture, edge to edge (height follows the photo), words above and below the cars */
+@media (min-width:1001px){
+  .fx-wipe{height:auto;aspect-ratio:1672/941;min-height:0}  /* a min-height here would widen the page through the ratio */
+  .fx-wipe .sx-img{inset:0}
+  .fx-wipe .sx-copy{padding:max(44px,6.2vw) 120px max(48px,calc(16.9vw - 134px))}
+  .fx-wipe .sx-back{top:max(28px,2.2vw);bottom:auto;left:auto;right:120px}
+}
+@media (min-width:1001px) and (max-width:1279px){.fx-wipe .sx-title{font-size:40px;max-width:720px}}
+@media (max-width:1000px){
+  .fx-wipe .sx-copy{padding:8vh 28px 13vh}.fx-wipe .sx-title{font-size:32px}.fx-wipe .sx-sub{font-size:18px}
+}
+
 </style>
 <style>
 /* Shared site UI · 24 Nov 2026: neater header button, "coming soon" links, booking + log-in pop-ups */
@@ -754,6 +781,23 @@ body.tj-lock{overflow:hidden}
 .pgp-lead{font:italic 400 24px/1.5 var(--serif);color:var(--plan-navy);max-width:520px}
 .pgp-two ul{grid-template-columns:repeat(2,1fr);max-width:1040px}
 @media (max-width:700px){.pgp-two ul{grid-template-columns:1fr}.pgp-lead{font-size:20px}}
+
+/* 27 Nov · Home, Language Alchemy (Neal): bluer, less black; the camera starts close on the gold seam,
+   pulls back to the full bowl, and the words wipe in as the picture settles. */
+.alchemy .bg-bowl{filter:brightness(.8) contrast(1.06) saturate(1.15)}
+.alchemy .bowl-quiet{background:radial-gradient(ellipse 62% 58% at 50% 45%,rgba(16,36,74,.5) 0%,rgba(16,36,74,.26) 60%,rgba(16,36,74,0) 100%)}
+.alchemy .bowl-quiet::after{content:"";position:absolute;inset:0;background:rgba(30,64,130,.13);mix-blend-mode:screen}
+.alchemy{--gx:36%;--gy:74%}
+.motion .alchemy .bg-bowl{opacity:0;transform-origin:var(--gx) var(--gy);transform:translate(calc(50% - var(--gx)),calc(50% - var(--gy))) scale(2.2);filter:brightness(1.05) contrast(1.06) saturate(1.4) blur(7px)}
+.motion .alchemy.in .bg-bowl{opacity:1;transform:none;filter:brightness(.8) contrast(1.06) saturate(1.15);transition:opacity 1s var(--ease-soft) .15s,filter 1.6s var(--ease-soft) .25s,transform 3.2s cubic-bezier(.6,0,.2,1) 1.5s}
+.motion .alchemy .bowl-quiet{opacity:0}
+.motion .alchemy.in .bowl-quiet{opacity:1;transition:opacity 2s var(--ease-soft) 1.8s}
+.motion .alchemy.reveal .r{opacity:1;transform:none;-webkit-mask-image:linear-gradient(90deg,#000 40%,transparent 60%);mask-image:linear-gradient(90deg,#000 40%,transparent 60%);-webkit-mask-size:260% 100%;mask-size:260% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0}
+.motion .alchemy.reveal.in .r{-webkit-mask-position:0 0;mask-position:0 0;transition:-webkit-mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s),mask-position 1.3s cubic-bezier(.45,0,.2,1) var(--wd,2s)}
+.alchemy .eyebrow{--wd:1.9s}.alchemy-title .line:first-child{--wd:2.15s}.alchemy-title .line:last-child{--wd:2.45s}
+.alchemy .r-rule{--d:2.85}.alchemy-body{--wd:3s}.alchemy-close{--wd:3.4s}.alchemy .btn{--wd:3.7s}
+@media (max-width:700px){.alchemy{--gx:58%;--gy:72%}}
+@media (prefers-reduced-motion:reduce){.motion .alchemy .r{-webkit-mask-image:none!important;mask-image:none!important}.motion .alchemy .bowl-quiet{opacity:1!important}}
 
 </style>
 </head>
